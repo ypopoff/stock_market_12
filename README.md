@@ -33,30 +33,29 @@ It is much better than the clearing house model which clears the market periodic
 
 ## Fundamental Questions
 
-	* How does past market volatility affect the future price of a stock?
-	* How does the initial price/number of stocks affect future market activity?
+* How does past market volatility affect the future price of a stock?
+* How does the initial price/number of stocks affect future market activity?
 	
 	
 ## Further possibilities
 
-	* What impact does emptying the book have on the market?
-	* How does adding trader personalities (conservative vs. risk taker) affect the outcome?
-	* What impact does the number of stocks per transaction have on the market?
+* What impact does emptying the book have on the market?
+* How does adding trader personalities (conservative vs. risk taker) affect the outcome?
+* What impact does the number of stocks per transaction have on the market?
 	
 
 ## Expected Results
 
-	* Price should be more stable if past market volatility is taken into account.
+* Price should be more stable if past market volatility is taken into account.
 	
 
 ## References 
 
-	* Modeling and simulation of a double auction artificial financial market – Raberto 2005
-	* Price Variations in a Stock Market with Many Agents – Bak 1996
-	* Scaling and criticality in a stochastic multi-agent model of a financial market – Lux 1999
-	* Thermodynamic limits of macroeconomic or financial models:
-	One- and two-parameter Poisson-Dirichlet models – Aoki 2007
-	* Agent-based simulation of a financial market – Raberto 2001
+* Modeling and simulation of a double auction artificial financial market – Raberto 2005
+* Price Variations in a Stock Market with Many Agents – Bak 1996
+* Scaling and criticality in a stochastic multi-agent model of a financial market – Lux 1999
+* Thermodynamic limits of macroeconomic or financial models: One- and two-parameter Poisson-Dirichlet models – Aoki 2007
+* Agent-based simulation of a financial market – Raberto 2001
 	
 
 ## Research Methods
