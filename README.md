@@ -1,5 +1,4 @@
-# MATLAB FS12 – Research Plan (Template)
-(text between brackets to be removed)
+# MATLAB FS12 – Research Plan
 
 > * Group Name: Bambolei
 > * Group participants names: Nicholas Eyring, Youri Popoff
