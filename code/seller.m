@@ -6,7 +6,7 @@
 
 function [ tprice, bookb, books, a, d, sbb, sbs, sbp ] = seller( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice )
 %seller Completes the tasks of the seller (stat = 1)
-%   Calculates the price of the asked price
+%   Calculates the asking price
 %   Checks if transaction needs to be executed
 %   Transaction executed
 
@@ -45,4 +45,3 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp ] = seller( bookb, books, a
 
             
 end
-

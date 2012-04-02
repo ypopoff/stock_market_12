@@ -41,7 +41,7 @@ while m <= M
     t = t + Tau;
     if t - m * T > T                                    %t - m * T = actual time in the trading day m
         
-        m = m + 1;
+        m = m + 1;                                      % increment number of days past
         bookb(1:1:sbb, :) = [];                         %book emptying
         sbb = 0;
         books(1:1:sbs, :) = [];
@@ -52,11 +52,11 @@ while m <= M
         ind = randi(tnum, 1, 1);                        %index of the chosen trader
         stat = randi(2, 1, 1) - 1;                      %choose between buyer (0) or seller (1)
         
-        if stat == 0                                    %buyer (0)
+        if stat == 0                                    %we have a buy order (0)
         
             [tprice, bookb, books, a, d, sbb, sbs, sbp] = buyer(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice);
             
-        else                                            %seller (1)
+        else                                            %we have a sell order (1)
 
             [tprice, bookb, books, a, d, sbb, sbs, sbp] = seller(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice);
             
@@ -78,6 +78,6 @@ hold on;
 plot(tprice(1:1:end, 3), tprice(1:1:end, 1), 'r');
 xlim([0, max(tprice(1:1:end, 3))]);
 ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
-%hist(book(:,5),2)
-    
-    
+xlabel('time')
+ylabel('transaction price')
+hist(book(:,5),2)

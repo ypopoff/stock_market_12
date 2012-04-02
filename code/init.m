@@ -9,7 +9,7 @@
 %   Creates trader matrix & empty book matrixes
 
 
-tnum = 100;                         %trader number
+tnum = 100;                         %number of traders
 tliq = 10^5;                        %liquidity
 tsha = 10^3;                        %shares
 
@@ -29,7 +29,7 @@ d = p0;                             %bid price: buyer
 
 one = ones(tnum,1);
 
-treg = [tliq*one, tsha*one];        %trader matrix
+treg = [tliq*one, tsha*one];        %trader matrix (2 columns)
 
 books = zeros(1000, 5);             %seller book
 sbs = 0;                            %actual amount of elements in books
@@ -37,4 +37,6 @@ bookb = zeros(1000, 5);             %buyer book
 sbb = 0;                            %actual amount of elements in bookb
 
 tprice = zeros(1000, 3);            %transaction price matrix
+
 sbp = 0;                            %actual amount of elements in tprice
+
