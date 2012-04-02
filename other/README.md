@@ -1,19 +1,19 @@
 
 # To do - Easter
 
-##Nick
+## Nick
 
-*Transaction function
-*Volatility
-*IPO -> function which determines how many shares are initially distributed
-*Empty books function
+* Transaction function
+* Volatility
+* IPO -> function which determines how many shares are initially distributed
+* Empty books function
 
-##Youri
+## Youri
 
-*Fix price reset problem
-*Log returns
-*Comment code : matrix structure
-*Sort and get rid of old entries
+* Fix price reset problem
+* Log returns
+* Comment code : matrix structure
+* Sort and get rid of old entries
 
 
 
