@@ -42,10 +42,15 @@ while m <= M
     if t - m * T > T                                    %t - m * T = actual time in the trading day m
         
         m = m + 1;                                      % increment number of days past
-        bookb(1:1:sbb, :) = [];                         %book emptying
-        sbb = 0;
-        books(1:1:sbs, :) = [];
-        sbs = 0;
+        
+        if bkempty == 1
+        
+            bookb(1:1:sbb, :) = [];                         %book emptying
+            sbb = 0;
+            books(1:1:sbs, :) = [];
+            sbs = 0;
+            
+        end;
         
     else
         
@@ -60,12 +65,12 @@ while m <= M
 
             [tprice, bookb, books, a, d, sbb, sbs, sbp] = seller(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice);
             
-        end
+        end;
         
         
-    end
+    end;
     
-end
+end;
 
 
 

@@ -8,6 +8,9 @@
 %   Contains all initial parameters
 %   Creates trader matrix & empty book matrixes
 
+bkempty = 1;                        %book emptying parameter
+                                    %0: Off, 1: On
+
 
 tnum = 100;                         %number of traders
 tliq = 10^5;                        %liquidity
@@ -28,7 +31,6 @@ a = p0;                             %asking price: seller
 d = p0;                             %bid price: buyer
 
 one = ones(tnum,1);
-
 treg = [tliq*one, tsha*one];        %trader matrix (2 columns)
 
 
