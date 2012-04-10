@@ -72,12 +72,17 @@ end
 
 %Plot section
 
-hold on;
+%TO SOLVE: no plot because sbb & sbs = 0, books just emptied
 %plot(bookb(1:1:sbb,4))
 %plot(books(1:1:sbs,4))
+
+
+%Plot transaction price over time
+figure;
+hold on;
 plot(tprice(1:1:end, 3), tprice(1:1:end, 1), 'r');
 xlim([0, max(tprice(1:1:end, 3))]);
 ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
-xlabel('time')
-ylabel('transaction price')
-hist(book(:,5),2)
+xlabel('time');
+ylabel('transaction price');
+hold off;

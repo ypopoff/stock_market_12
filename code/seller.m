@@ -34,7 +34,7 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp ] = seller( bookb, books, a
         else
                 
             sbs = sbs + 1;
-            books(sbs,:) = [m, t, ind, p, 1]; %new entry in seller book
+            books(sbs,:) = [m, t, ind, p]; %new entry in seller book
 
            
             if p < a || sbs == 1              %update best seller price

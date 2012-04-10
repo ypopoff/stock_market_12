@@ -12,7 +12,7 @@
 
 * Fix price reset problem
 * Log returns
-* Comment code : matrix structure
+* DONE: Comment code : matrix structure
 * Sort and get rid of old entries
 
 

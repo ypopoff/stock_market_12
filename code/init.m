@@ -31,12 +31,22 @@ one = ones(tnum,1);
 
 treg = [tliq*one, tsha*one];        %trader matrix (2 columns)
 
-books = zeros(1000, 5);             %seller book
+
+%Books initialisation section (seller & buyer book)
+%   Book format:
+%   day, time, seller/buyer id, s/b price
+
+books = zeros(1000, 4);             %seller book
 sbs = 0;                            %actual amount of elements in books
-bookb = zeros(1000, 5);             %buyer book
+bookb = zeros(1000, 4);             %buyer book
 sbb = 0;                            %actual amount of elements in bookb
 
-tprice = zeros(1000, 3);            %transaction price matrix
 
+%Transaction initialisation section
+%   Transaction format:
+%   transaction price, time the corresponding auction was entered (in the past),
+%   actual transaction time
+
+tprice = zeros(1000, 3);            %transaction price matrix
 sbp = 0;                            %actual amount of elements in tprice
 

@@ -16,6 +16,8 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp ] = buyer( bookb, books, a,
         if sbs > 0 && p >= a                    %sell order book is not empty and bid price is greater than or equal to lowest asking price -> transaction
         
             id = find(books(:,4) == a);
+            %TO SOLVE: if 2 entries with same price
+            
             tm = books(id, 2);
             books(id,:) = [];                   %delete best sell limit order in
                                                 %seller book
@@ -33,7 +35,7 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp ] = buyer( bookb, books, a,
         else
             
             sbb = sbb + 1;                      %increment number of elements in buy order book
-            bookb(sbb,:) = [m, t, ind, p, 0];   %new entry in buyer book
+            bookb(sbb,:) = [m, t, ind, p];      %new entry in buyer book
            
             
             if p > d || sbb == 1                %update best buyer price
