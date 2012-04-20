@@ -4,11 +4,6 @@
 %Simulation of trading in an artificial stock market
 
 
-clear all; clc;
-%Main program
-%   Determines trading period and calls buyer or seller function to create
-%   entries in the Stock Market book
-
 % TODO
 % - comment code: matrix structure
 % - implement transaction
@@ -26,13 +21,20 @@ clear all; clc;
 % - delete column 5 in books & bookb (status column)
 
 
-%Initialisation section
+%% Main program
+%   Determines trading period and calls buyer or seller function to create
+%   entries in the Stock Market book
+
+clear all; clc; clf;
+
+%% Initialisation section
 
 init
 
+tregB4 = treg;                                          % initial trader matrix used for comparison
 
 
-%Simulation section
+%% Simulation section
 
 while m <= M 
     Tau = exprnd(lambda);                               %step between two book entries
@@ -59,11 +61,11 @@ while m <= M
         
         if stat == 0                                    %we have a buy order (0)
         
-            [tprice, bookb, books, a, d, sbb, sbs, sbp] = buyer(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice);
+            [tprice, bookb, books, a, d, sbb, sbs, sbp, treg] = buyer(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg);
             
         else                                            %we have a sell order (1)
 
-            [tprice, bookb, books, a, d, sbb, sbs, sbp] = seller(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice);
+            [tprice, bookb, books, a, d, sbb, sbs, sbp, treg] = seller(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg);
             
         end;
         
@@ -74,20 +76,51 @@ end;
 
 
 
-
-%Plot section
+%% Plot section
 
 %TO SOLVE: no plot because sbb & sbs = 0, books just emptied
 %plot(bookb(1:1:sbb,4))
 %plot(books(1:1:sbs,4))
 
 
-%Plot transaction price over time
-figure;
+%Plot section
+figure(1)
 hold on;
+%plot(bookb(1:1:sbb,4))
+%plot(books(1:1:sbs,4))
 plot(tprice(1:1:end, 3), tprice(1:1:end, 1), 'r');
 xlim([0, max(tprice(1:1:end, 3))]);
 ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
-xlabel('time');
-ylabel('transaction price');
+xlabel('time')
+ylabel('transaction price')
+%hist(book(:,5),2)
+
 hold off;
+
+
+%% Plot trader assets
+figure(2)
+
+subplot(2,2,1)
+
+bar([1:1:tnum], tregB4(:,1))	% initial trader liquidities
+xlabel('trader ID')
+ylabel('initial trader liquidities')
+
+subplot(2,2,2)
+
+bar([1:1:tnum], tregB4(:,2))	% initial trader share holdings
+xlabel('trader ID')
+ylabel('initial trader share holdings')
+
+subplot(2,2,3)
+
+bar([1:1:tnum], treg(:,1))	% final trader liquidities
+xlabel('trader ID')
+ylabel('final trader liquidities')
+
+subplot(2,2,4)
+
+bar([1:1:tnum], treg(:,2))	% final trader share holdings
+xlabel('trader ID')
+ylabel('final trader share holdings')

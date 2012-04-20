@@ -4,7 +4,7 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg ] = buyer( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg )
+function [ tprice, bookb, books, a, d, sbb, sbs, sbp ] = buyer( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice,  )
 %buyer Completes the tasks of the buyer (stat = 0)
 %   Calculates the price of the bid
 %   Checks if transaction needs to be executed
@@ -24,7 +24,8 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg ] = buyer( bookb, boo
             books(id,:) = [];                    %delete best sell limit order in
                                                  %seller book
 
-            %% Execute the transaction
+            %%
+            %execute the transaction
             treg = transaction( treg, a, 1, sellerID, ind);
                                                 %treg is now updated !                                      
                
