@@ -12,7 +12,7 @@ subplot(3,2,4); B = sort(B, 'descend'); plot(B,[1:1:100000]);
 
 lambda = 300;
 C = 0.01*rand(100000,1);
-D = lambda * exp(-lambda * C)
+D = lambda * exp(-lambda * C);
 subplot(3,2,5); hist(D,100);
 D = sort(D,'descend');
 subplot(3,2,6); plot(D,[1:1:100000]);
