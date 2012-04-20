@@ -10,12 +10,12 @@ function [ treg, p0, a, d, tliq, tsha, tnum ] = IPO( unitPrice, shares, tliq, tn
 % output:  treg trader matrix
 
 	
-	p0 = unitPrice;
+	p0 = unitPrice;                     %starting price
 
-	tsha = shares/tnum;		    % divides shares equally between all traders (shares must me a multiple of tnum !)
+	tsha = shares/tnum;                 %divides shares equally between all traders (shares must me a multiple of tnum !)
 
-	a = p0;
-	d = p0;
+	a = p0;                             %asking price: seller
+	d = p0;                             %bid price: buyer
 
 	one = ones(tnum,1);
 
