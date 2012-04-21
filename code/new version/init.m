@@ -10,11 +10,6 @@
 bkempty = 1;                        %book emptying parameter
                                     %0: Off, 1: On
 
-
-tnum = 100;                         %number of traders
-tliq = 10^5;                        %liquidity
-shares = (10^3)*tnum;               %shares
-
 lambda = 20;                        %mean of the exponential distribution
 mu = 1;                             %deviation
 sigma = 0.005;                      %mean of the gaussian (normal) distribution
@@ -32,14 +27,15 @@ t = 0;                              %global time variable
 %   - The index of the row is the index of the trader
 
 p0 = 100;                           %starting price
-[ treg, p0, a, d, tliq, tsha, tnum ] = IPO( p0, shares, tliq, tnum );
+[ treg, p0, a, d, tliq, tsha, tnum ] = IPO( p0 );
                                     % initial public offering
 
 
 %% Books initialisation section (seller & buyer book)
 %   - Book format:
-%   day, time, seller/buyer id, s/b price, dirty bit, age bit, new entry
-%   bit
+%   day, time, seller/buyer id, s/b price, shares, dirty bit, age bit, new
+%   entry number
+%   
 %   - For practical purposes, the book entries are never erased
 %   - A dirty bit is added to each entry, to inform whether the entry
 %   is active or not
@@ -48,9 +44,9 @@ p0 = 100;                           %starting price
 %   - The new entry bit is 1 if the auction was added by a trader who wants
 %   to refresh his auction
 
-books = zeros(1000, 7);             %seller book
+books = zeros(1000, 8);             %seller book
 sbs = 0;                            %actual amount of elements in books
-bookb = zeros(1000, 7);             %buyer book
+bookb = zeros(1000, 8);             %buyer book
 sbb = 0;                            %actual amount of elements in bookb
 
 
@@ -74,9 +70,9 @@ sbbp = 0;                           %actual #elements in bookbpaging
 
 %% Transaction initialisation section
 %   - Transaction format:
-%   transaction price, time the corresponding auction was entered (in the past),
-%   actual transaction time
+%   transction price, amount of shares, seller id, index of entry in seller book,
+%   buyer id, index of entry in buyer book, transaction time 
 
-tprice = zeros(1000, 3);            %transaction price matrix
+tprice = zeros(1000, 7);            %transaction price matrix
 sbp = 0;                            %actual amount of elements in tprice
 
