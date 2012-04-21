@@ -21,14 +21,15 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, b
             
                             
             sbs = sbs + 1;                                                  %increment number of elements in buy order book
-            books(sbs,:) = [m, t, ind, p, 1, 0, arefresh];                  %new entry in seller book
+            books(sbs,:) = [ m, t, ind, p, shares, 1, 0, arefresh ];                  %new entry in seller book
             
             sbsp = sbsp + 1;                                                %increment number of elements in paging book
-            bookspaging( sbsp, : ) = [ p, shares, sbs ];                    %new entry in the paging book
+            bookspaging( sbsp, : ) = [ p, t, shares, sbs ];                 %new entry in the paging book
             
-            bookspaging = sortbooks( bookspaging );
+            bookspaging = sortBooks( bookspaging, sbsp );
             
-            multtransaction( bookspaging, sbsp );
+            %TODO
+            %multtransaction( bookspaging, sbsp );
   
             
         else

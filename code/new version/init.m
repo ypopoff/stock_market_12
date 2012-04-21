@@ -54,17 +54,17 @@ sbb = 0;                            %actual amount of elements in bookb
 %   - The paging of the book is used to sort the still valid book entries
 %   without changing the actual book order (sorted chronologically)
 %   - The paging book is sorted after the price
-%   i.e. 1. row : lowest price,        amount of shares,   index of entry
+%   i.e. 1. row : lowest price,        time,    amount of shares,   index of entry
 %        in book
-%        2. row : second lowest price, amount of shares,   index of entry
+%        2. row : second lowest price, time,    amount of shares,   index of entry
 %        in book
 %        3 ...
 %   - When transaction is done: the amount of shares is decreased, or the
 %   whole entry is ereased if amount of shares == 0
 
-bookspaging = zeros(1000, 3);       %seller book paging
+bookspaging = zeros(1000, 4);       %seller book paging
 sbsp = 0;                           %actual #elements in bookspaging
-bookbpaging = zeros(1000, 3);       %buyer book paging
+bookbpaging = zeros(1000, 4);       %buyer book paging
 sbbp = 0;                           %actual #elements in bookbpaging
 
 
