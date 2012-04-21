@@ -4,55 +4,36 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg ] = seller( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg )
+function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp ] = seller2( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh )
 %seller Completes the tasks of the seller (stat = 1)
 %   Calculates the asking price
 %   Checks if transaction needs to be executed
 %   Transaction executed
 
-        n = normrnd(mu, sigma, 1, 1);           %factor ni to calculate the price
-        p = n * a;                                %asked price
-            
-        if sbb > 0 && p < d                     %transaction
+        n = normrnd(mu, sigma, 1, 1);                                       %factor ni to calculate the price
+        p = n * a;                                                          %asked price
         
-            id = find(bookb(:,4) == d);
-            tm = bookb(id, 2);
+        %TODO amount of shares
+        shares = 1;                                                         %amount of shares
+        
+
+        if solvabilitySeller( treg, ind, shares ) == true
             
-            buyerID = bookb(id,3);              %ID of other transaction partner (here buyer)
+                            
+            sbs = sbs + 1;                                                  %increment number of elements in buy order book
+            books(sbs,:) = [m, t, ind, p, 1, 0, arefresh];                  %new entry in seller book
             
-            bookb(id,:) = [];                   %delete best buy limit order in
-                                                %buyer book
+            sbsp = sbsp + 1;                                                %increment number of elements in paging book
+            bookspaging( sbsp, : ) = [ p, shares, sbs ];                    %new entry in the paging book
             
-                                                
-            %% Execute the transaction
-            treg = transaction( treg, d, 1, ind, buyerID);
-                                                % treg is now updated !
+            bookspaging = sortbooks( bookspaging );
             
-            %%                                    
-            sbb = sbb - 1;
-                
-            sbp = sbp + 1;                      %entry in tprice
-            tprice(sbp,:) = [d, tm, t];
-                
-            if sbb > 0                          %maximum buyer price update
-                d = max(bookb(1:1:sbb,4));
-            else
-                d = p0;
-            end
-            
-            
+            multtransaction( bookspaging, sbsp );
+  
             
         else
-                
-            sbs = sbs + 1;
-            books(sbs,:) = [m, t, ind, p];    %new entry in seller book
-
-           
-            if p < a || sbs == 1              %update best seller price
-               a = p;
-           end
+            %call other trader
             
-       end
-
             
-end
+            
+        end
