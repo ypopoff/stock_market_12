@@ -59,13 +59,15 @@ while m <= M
         ind = randi(tnum, 1, 1);                        %index of the chosen trader
         stat = randi(2, 1, 1) - 1;                      %choose between buyer (0) or seller (1)
         
+        arefresh = 0;                                   %bit to tell whether the entry is new or refreshed
+        
         if stat == 0                                    %we have a buy order (0)
         
-            [tprice, bookb, books, a, d, sbb, sbs, sbp, treg] = buyer(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg);
+            [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = buyer2(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh);
             
         else                                            %we have a sell order (1)
 
-            [tprice, bookb, books, a, d, sbb, sbs, sbp, treg] = seller(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg);
+            [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = seller2(bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh);
             
         end;
         
