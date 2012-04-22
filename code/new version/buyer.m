@@ -4,7 +4,7 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp ] = buyer2( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh )
+function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp ] = buyer( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh )
 %buyer Completes the tasks of the buyer (stat = 0)
 %   Calculates the price of the bid
 %   Checks if transaction needs to be executed
@@ -17,7 +17,7 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, b
         shares = 1;
           
         
-        if solvabilityBuyer( treg, ind, p, shares ) == true
+        if solvencyBuyer( treg, ind, p, shares ) == true
             
         
             sbb = sbb + 1;                                                  %increment number of elements in buy order book
