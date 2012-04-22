@@ -3,28 +3,24 @@
 %Nicholas Eyring, Youri Popoff
 %Simulation of trading in an artificial stock market
 
+%% Initial public offering (IPO)
+%   simulates a very simple initial public offering of a firm
+%   initial trader matrix (treg) is determined
+%   treg format: liquidities, shares -> row number is trader ID
 
-function [ treg, p0, a, d, tliq, tsha, tnum ] = IPO( unitPrice )
-% simulates a very simple initial public offering of a firm
-% inputs:  unitPrice for a share,  number of shares put on the market
-% output:  treg trader matrix
+tnum = 100;                         % number of traders
 
-    
-    tnum = 100;                         %number of traders
-    tliq = 10^5;                        %liquidity
-    shares = (10^3)*tnum;               %shares
+tliq = 10^5;                        % individual trader liquidity
 
-	
-	p0 = unitPrice;                     %starting price
+totShares = 1000*tnum;              % total number of distributed shares
 
-	tsha = shares/tnum;                 %divides shares equally between all traders (shares must me a multiple of tnum !)
+p0 = 100;                           % starting unit price
 
-	a = p0;                             %asking price: seller
-	d = p0;                             %bid price: buyer
+tshares = totShares/tnum;           % individual trader shares
 
-	one = ones(tnum,1);
+a = p0;                             % asking price: seller
+d = p0;                             % bid price: buyer
 
-	treg = [tliq*one, tsha*one];        %trader matrix (2 columns)
-    
+one = ones(tnum,1);
 
-end
+treg = [tliq*one, tshares*one];     % trader matrix (2 columns)
