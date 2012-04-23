@@ -4,7 +4,7 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp ] = seller( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh )
+function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp ] = seller( bookb, books, a, d, mu, sigma, m, t, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh, orind )
 %seller Completes the tasks of the seller (stat = 1)
 %   Calculates the asking price
 %   Checks if transaction needs to be executed
@@ -16,15 +16,18 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, b
         %TODO amount of shares
         shares = 1;                                                         %amount of shares
         
+        %TODO maximal age
+        a0 = 100;
+        
 
         if solvencySeller( treg, ind, shares ) == true
             
                             
             sbs = sbs + 1;                                                  %increment number of elements in buy order book
-            books(sbs,:) = [ m, t, ind, p, shares, 1, 0, arefresh ];                  %new entry in seller book
+            books( sbs, : ) = [ m, t, ind, p, shares, 1, 0, arefresh, orind ]; %new entry in seller book
             
             sbsp = sbsp + 1;                                                %increment number of elements in paging book
-            bookspaging( sbsp, : ) = [ p, t, shares, sbs ];                 %new entry in the paging book
+            bookspaging( sbsp, : ) = [ p, t, shares, sbs, a0 ];             %new entry in the paging book
             
             bookspaging = sortBooks( bookspaging, sbsp );
             

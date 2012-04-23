@@ -7,7 +7,7 @@
 %   Contains all initial parameters
 %   Creates trader matrix & empty book matrixes
 
-bkempty = 1;                        %book emptying parameter
+bkempty = 0;                        %book emptying parameter
                                     %0: Off, 1: On
 
 lambda = 20;                        %mean of the exponential distribution
@@ -15,7 +15,7 @@ mu = 1;                             %deviation
 sigma = 0.005;                      %mean of the gaussian (normal) distribution
 
 
-M = 10;                             %number of days
+M = 1;                              %number of days
 m = 0;                              %starting at day 0
 T = 60*60*7;                        %number of seconds in one trading day
 t = 0;                              %global time variable
@@ -34,7 +34,7 @@ p0 = 100;                           %starting price
 %% Books initialisation section (seller & buyer book)
 %   - Book format:
 %   day, time, seller/buyer id, s/b price, shares, dirty bit, age bit, new
-%   entry number
+%   entry number, index of aged entry
 %   
 %   - For practical purposes, the book entries are never erased
 %   - A dirty bit is added to each entry, to inform whether the entry
@@ -44,9 +44,9 @@ p0 = 100;                           %starting price
 %   - The new entry bit is 1 if the auction was added by a trader who wants
 %   to refresh his auction
 
-books = zeros(1000, 8);             %seller book
+books = zeros(1000, 9);             %seller book
 sbs = 0;                            %actual amount of elements in books
-bookb = zeros(1000, 8);             %buyer book
+bookb = zeros(1000, 9);             %buyer book
 sbb = 0;                            %actual amount of elements in bookb
 
 
@@ -55,16 +55,16 @@ sbb = 0;                            %actual amount of elements in bookb
 %   without changing the actual book order (sorted chronologically)
 %   - The paging book is sorted after the price
 %   i.e. 1. row : lowest price,        time,    amount of shares,   index of entry
-%        in book
+%        in book, lifespan
 %        2. row : second lowest price, time,    amount of shares,   index of entry
-%        in book
+%        in book, lifespan
 %        3 ...
 %   - When transaction is done: the amount of shares is decreased, or the
 %   whole entry is ereased if amount of shares == 0
 
-bookspaging = zeros(1000, 4);       %seller book paging
+bookspaging = zeros(1000, 5);       %seller book paging
 sbsp = 0;                           %actual #elements in bookspaging
-bookbpaging = zeros(1000, 4);       %buyer book paging
+bookbpaging = zeros(1000, 5);       %buyer book paging
 sbbp = 0;                           %actual #elements in bookbpaging
 
 

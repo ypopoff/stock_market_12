@@ -73,16 +73,16 @@ for i = 1:1:M*T
         %% Book entry
         
         ind = randi(tnum, 1, 1);                                            %index of the chosen trader
-        stat = randi(2, 1, 1) - 1;                                          %choose between buyer (0) or seller (1)
+        stat = randi(2, 1, 1) - 1;                      %choose between buyer (0) or seller (1)
         
-        arefresh = 0;                                                       %bit to tell whether the entry is new or refreshed
-        orind = 0;                                                          %new auction: no aged entry line
+        arefresh = 0;                                   %bit to tell whether the entry is new or refreshed
+        orind = 0;                                      %new auction: no aged entry line
         
-        if stat == 0                                                        %we have a buy order (0)
+        if stat == 0                                    %we have a buy order (0)
         
             [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = buyer(bookb, books, a, d, mu, sigma, m, i, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh, orind );
             
-        else                                                                %we have a sell order (1)
+        else                                            %we have a sell order (1)
 
             [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = seller(bookb, books, a, d, mu, sigma, m, i, ind, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, arefresh, orind );
             
