@@ -5,8 +5,8 @@
 
 
 function [ res ] = solvencyBuyer( treg, ind, p, shares )
-%solvencyBuyer checks whether the buyer is solbable or not
-%   returns a boolean value
+%solvencyBuyer checks the solvency of the buyer
+%   returns a boolean value -> true: solvency ok, otherwise false
 
    res = false;
 

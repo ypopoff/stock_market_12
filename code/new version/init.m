@@ -22,13 +22,8 @@ t = 0;                              %global time variable
 
 
 %% IPO section
-%   - treg is the trader matrix
-%   - Format: liquidities, shares
-%   - The index of the row is the index of the trader
 
-p0 = 100;                           %starting price
-[ treg, p0, a, d, tliq, tsha, tnum ] = IPO( p0 );
-                                    % initial public offering
+IPO                                 % initial public offering (script)
 
 
 %% Books initialisation section (seller & buyer book)
