@@ -4,16 +4,16 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ bookb, sbb, books, sbs ] = emptyBook( bkempty, bookb, sbb, books, sbs )
+function [ SS ] = emptyBook( SS )
 %emptyBook empties book if needed
 
 
-    if bkempty == 1
+    if SS.bkempty == 1
 
-        bookb(1:1:sbb, :) = [];                                             %book emptying
-        sbb = 0;
-        books(1:1:sbs, :) = [];
-        sbs = 0;
+        SS.bookb(1:1:SS.sbb, :) = [];              %book emptying
+        SS.sbb = 0;
+        SS.books(1:1:SS.sbs, :) = [];
+        SS.sbs = 0;
             
     end
 
