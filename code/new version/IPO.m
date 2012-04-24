@@ -7,7 +7,6 @@
 %   simulates a very simple initial public offering of a firm
 %   initial trader matrix (treg) is determined
 %   treg format: liquidities, shares -> row number is trader ID
-%   fortune format: time, companyWorth
 
 tnum = 100;                         % number of traders
 
@@ -25,10 +24,3 @@ d = p0;                             % bid price: buyer
 one = ones(tnum,1);
 
 treg = [tliq*one, tshares*one];     % trader matrix (2 columns)
-
-fortune = zeros(1000, 2);
-
-fortune(1,2) = totShares * p0;      % initial fortune (time = 0)
-
-fLen = 1;                           % number of entries in fortune matrix
-

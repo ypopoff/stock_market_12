@@ -5,7 +5,7 @@
 
 
 function [ bookpaging ] = ageUpdate( bookpaging, sb )
-%ageUpdate updates age of auction
+%ageUpdate updates age of bid
 
     if sb > 0
 

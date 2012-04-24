@@ -77,3 +77,8 @@ sbp = 0;                            %actual amount of elements in tprice
 ymin = p0 - 25;
 ymax = p0 + 25;
 
+%% Define and initialize current system state structure variable
+%   Group system parameters in a single structure for convenience and
+%   clarity (22 elements)
+
+SS = struct('treg',treg,'tnum',tnum,'totShares',totShares,'bookbpaging',bookbpaging,'sbbp',sbbp,'bookspaging',bookspaging,'sbsp',sbsp,'bkempty', bkempty,'bookb',bookb,'sbb',sbb,'books',books,'sbs',sbs,'a',a,'d',d,'mu',mu,'lambda',lambda,'sigma',sigma,'p0',p0,'tprice',tprice,'sbp',sbp,'T',T,'M',M);
