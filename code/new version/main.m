@@ -1,3 +1,4 @@
+        set(gcf,'doublebuffer','on') ; % remove flicker
 %©2012 ETH Zürich
 %Bambolei
 %Nicholas Eyring, Youri Popoff
@@ -57,14 +58,7 @@ for i = 1:1:M*T
         
             m = m + 1;                                                      % increment number of days past
         
-            if bkempty == 1
-        
-                bookb(1:1:sbb, :) = [];                                     %book emptying
-                sbb = 0;
-                books(1:1:sbs, :) = [];
-                sbs = 0;
-            
-            end
+            [ bookb, sbb, books, sbs ] = emptyBook( bkempty, bookb, sbb, books, sbs );
         
         end
     
@@ -96,6 +90,8 @@ for i = 1:1:M*T
         [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = ageCheckSeller(bookb, books, a, d, mu, sigma, m, i, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp);
         
     end
+    
+    plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp );
 
     %% Transaction Section
     
@@ -107,25 +103,8 @@ end
 
 
 %% Plot section
+plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp );
 
-%TO SOLVE: no plot because sbb & sbs = 0, books just emptied
-%plot(bookb(1:1:sbb,4))
-%plot(books(1:1:sbs,4))
-
-
-%Plot section
-figure(1)
-hold on;
-%plot(bookb(1:1:sbb,4))
-%plot(books(1:1:sbs,4))
-plot(tprice(1:1:sbp, 7), tprice(1:1:sbp, 1), 'r');
-%xlim([0, max(tprice(1:1:end, 7))]);
-%ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
-xlabel('time')
-ylabel('transaction price')
-%hist(book(:,5),2)
-
-hold off;
 
 
 %% Plot trader assets
