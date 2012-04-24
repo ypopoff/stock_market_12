@@ -15,9 +15,10 @@ mu = 1;                             %deviation
 sigma = 0.005;                      %mean of the gaussian (normal) distribution
 
 
-M = 1;                              %number of days
+M = 3;                              %number of days
 m = 0;                              %starting at day 0
-T = 60*60*7;                        %number of seconds in one trading day
+h = 1;                              %hours in one trading day
+T = 60*60*h;                        %number of seconds in one trading day
 t = 0;                              %global time variable
 
 
@@ -70,4 +71,9 @@ sbbp = 0;                           %actual #elements in bookbpaging
 
 tprice = zeros(1000, 7);            %transaction price matrix
 sbp = 0;                            %actual amount of elements in tprice
+
+
+%% Plot parameter section
+ymin = p0 - 25;
+ymax = p0 + 25;
 

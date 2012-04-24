@@ -32,9 +32,6 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, b
             bookbpaging( sbbp, : ) = [ p, t, shares, sbb, a0 ];             %new entry in the paging book
             
             bookbpaging = sortBookb( bookbpaging, sbbp );                   %sorting the paging book
-        
-            %TODO
-            %multtransaction( bookbpaging, sbbp );
             
             
         else

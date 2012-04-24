@@ -3,6 +3,7 @@
 %Nicholas Eyring, Youri Popoff
 %Simulation of trading in an artificial stock market
 
+
 function [tprice, treg, sbp] = singleTransaction(sellerID, buyerID, sharesS, priceS, treg, tprice, sbp, EntryIndexS, EntryIndexB, i)
 % Executes a single transaction between two parties
 % Returns updated matrices tprice and treg

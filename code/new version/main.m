@@ -1,4 +1,3 @@
-        set(gcf,'doublebuffer','on') ; % remove flicker
 %©2012 ETH Zürich
 %Bambolei
 %Nicholas Eyring, Youri Popoff
@@ -37,12 +36,14 @@ init
 tregB4 = treg;                                                              % initial trader matrix used for comparison
 
 
+
 %% Simulation section
 t = 1+round(exprnd(lambda));
 
+figure(1);                                                                  %select figure for plot
+
 for i = 1:1:M*T
-    %disp('Actual time: ');
-    %i
+
     %% Age Update
     bookbpaging = ageUpdate( bookbpaging, sbbp );
     bookspaging = ageUpdate( bookspaging, sbsp );
@@ -57,8 +58,12 @@ for i = 1:1:M*T
         if t - m * T > T                                                    %t - m * T = actual time in the trading day m
         
             m = m + 1;                                                      % increment number of days past
-        
-            [ bookb, sbb, books, sbs ] = emptyBook( bkempty, bookb, sbb, books, sbs );
+
+            if bkempty == 1
+            
+                [ bookb, sbb, books, sbs ] = emptyBook( bookb, sbb, books, sbs );
+                
+            end
         
         end
     
@@ -83,27 +88,26 @@ for i = 1:1:M*T
         end
 
         
-    else   
-        %% Age Check
-        
-        [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = ageCheckBuyer(bookb, books, a, d, mu, sigma, m, i, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp);
-        [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = ageCheckSeller(bookb, books, a, d, mu, sigma, m, i, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp);
-        
     end
     
-    plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp );
-
+    
+    %% Age Check
+        
+    [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = ageCheckBuyer(bookb, books, a, d, mu, sigma, m, i, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp);
+    [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp] = ageCheckSeller(bookb, books, a, d, mu, sigma, m, i, sbb, sbs, sbp, p0, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp);
+        
+    
+    
     %% Transaction Section
     
-        [tprice, bookb, books,sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp, fortune, fLen] = transaction(bookb, books,sbb , sbs, sbp, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, i, fortune, fLen, totShares);
-        
+    [tprice, bookb, books,sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp, fortune, fLen] = transaction(bookb, books,sbb , sbs, sbp, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, i, fortune, fLen, totShares);
+    
+    
+    %% Plot section
+    [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp, p0, a, d, ymin, ymax );
+    
         
 end
-
-
-
-%% Plot section
-plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp );
 
 
 

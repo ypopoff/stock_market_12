@@ -38,6 +38,6 @@ pause
 for i=1:N,
   y(i) = sin(2*pi*0.5*(i/100)) ;
   %set(h,'ydata',y) ;
-  h = plot(x,y,'b-') ;
+  h = plot(x,y,'linewidth', 10) ;
   drawnow
 end

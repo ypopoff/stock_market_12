@@ -17,7 +17,7 @@ function [tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, bo
     if isempty(pagedind) ~= 1
     
         if length(pagedind) > 1                                             %queue of traders who want to refresh auction
-            warning('two entries should be renewed');
+            warning('Number of entries to be be renewed');
             
         end
         
