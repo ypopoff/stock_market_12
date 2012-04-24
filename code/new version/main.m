@@ -46,7 +46,7 @@ for i = 1:1:M*T
     bookbpaging = ageUpdate( bookbpaging, sbbp );
     bookspaging = ageUpdate( bookspaging, sbsp );
     
-    %% Transaction section
+    %% New Book Entry Section
     if i == t
     
         Tau = 1+round(exprnd(lambda));                                      %step between two book entries
@@ -97,7 +97,11 @@ for i = 1:1:M*T
         
     end
 
+    %% Transaction Section
     
+        [tprice, bookb, books,sbb, sbs, sbp, treg, bookbpaging, sbbp, bookspaging, sbsp, fortune, fLen] = transaction(bookb, books,sbb , sbs, sbp, tprice, treg, bookbpaging, sbbp, bookspaging, sbsp, i, fortune, fLen, totShares);
+        
+        
 end
 
 
@@ -114,9 +118,9 @@ figure(1)
 hold on;
 %plot(bookb(1:1:sbb,4))
 %plot(books(1:1:sbs,4))
-plot(tprice(1:1:end, 3), tprice(1:1:end, 1), 'r');
+plot(tprice(1:1:sbp, 7), tprice(1:1:sbp, 1), 'r');
 %xlim([0, max(tprice(1:1:end, 7))]);
-ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
+%ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
 xlabel('time')
 ylabel('transaction price')
 %hist(book(:,5),2)
@@ -150,5 +154,12 @@ subplot(2,2,4)
 bar([1:1:tnum], treg(:,2))	% final trader share holdings
 xlabel('trader ID')
 ylabel('final trader share holdings')
+
+%% Plot Estimated firm fortune
+figure(3)
+
+plot(fortune(1:1:fLen,1), fortune(1:1:fLen,2))
+xlabel('time')
+ylabel('estimated firm fortune')
 
 toc;
