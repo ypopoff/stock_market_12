@@ -39,9 +39,9 @@ IPO                                 % initial public offering (script)
 %   - The new entry bit is 1 if the auction was added by a trader who wants
 %   to refresh his auction
 
-books = zeros(1000, 9);             %seller book
+books = zeros(20000, 9);            %seller book
 sbs = 0;                            %actual amount of elements in books
-bookb = zeros(1000, 9);             %buyer book
+bookb = zeros(20000, 9);            %buyer book
 sbb = 0;                            %actual amount of elements in bookb
 
 
@@ -57,9 +57,9 @@ sbb = 0;                            %actual amount of elements in bookb
 %   - When transaction is done: the amount of shares is decreased, or the
 %   whole entry is ereased if amount of shares == 0
 
-bookspaging = zeros(1000, 5);       %seller book paging
+bookspaging = zeros(2000, 5);       %seller book paging
 sbsp = 0;                           %actual #elements in bookspaging
-bookbpaging = zeros(1000, 5);       %buyer book paging
+bookbpaging = zeros(2000, 5);       %buyer book paging
 sbbp = 0;                           %actual #elements in bookbpaging
 
 
