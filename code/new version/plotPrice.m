@@ -35,11 +35,11 @@ function [] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp )
         
         
         subplot(2,2,[3 4]);
-        plot(tprice(1:1:sbp, 3), tprice(1:1:sbp, 1), 'r');
+        plot(tprice(1:1:sbp, 7), tprice(1:1:sbp, 1), 'r');
         %xlim([0, max(tprice(1:1:end, 7))]);
         %ylim([min(tprice(1:1:end, 1)) - 1, max(tprice(1:1:end, 1)) + 1]);
-        %xlabel('time in seconds');
-        %ylabel('transaction price');
+        xlabel('time in seconds');
+        ylabel('transaction price');
         %drawnow;
 
         %hold off;
