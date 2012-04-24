@@ -29,25 +29,26 @@ tic;
 
 clear all; clc; clf;
 
+
 %% Initialisation section
 
-init
+graphics;
+init;
 
-tregB4 = SS.treg;                                                              % initial trader matrix used for comparison
+tregB4 = SS.treg;                                                           % initial trader matrix used for comparison
 tnumB4 = SS.tnum;
 
 
 %% Simulation section
 t = 1+round(exprnd(SS.lambda));
 
-
 for i = 1:1:(SS.M)*(SS.T)
-    %disp('Actual time: ');
-    %i
+
 
     %% Age Update
     SS.bookbpaging = ageUpdate( SS.bookbpaging, SS.sbbp );
     SS.bookspaging = ageUpdate( SS.bookspaging, SS.sbsp );
+    
     
     %% New Book Entry Section
     if i == t
@@ -56,7 +57,7 @@ for i = 1:1:(SS.M)*(SS.T)
                                                                                %(random number; exponential distribution)
     
         t = t + Tau;
-        if t - m * T > T                                                       %t - m * T = actual time in the trading day m
+        if t - m * SS.T > SS.T                                                 %t - m * T = actual time in the trading day m
         
 
             m = m + 1;                                                         % increment number of days past
@@ -70,7 +71,7 @@ for i = 1:1:(SS.M)*(SS.T)
        
         %% Book entry
         
-        ind = randi(SS.tnum, 1, 1);                                            %index of the chosen trader
+        ind = randi(SS.tnum, 1, 1);                                         %index of the chosen trader
         stat = randi(2, 1, 1) - 1;                                          %choose between buyer (0) or seller (1)
         
         arefresh = 0;                                                       %bit to tell whether the entry is new or refreshed
@@ -91,63 +92,34 @@ for i = 1:1:(SS.M)*(SS.T)
     
     
     %% Age Check
-        
 
     [ SS ] = ageCheckBuyer(SS, m, i);
     [ SS ] = ageCheckSeller(SS, m, i);
 
-        
-    
-    [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax );
 
     %% Transaction Section
     
     [ SS ] = transaction(SS, i);
+    
+    
+    %% Plot section live
+    
+    [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
         
         
 end
 
 
 
-%% Plot trader assets
-figure(2)
+%% Plot section result
+set( 0, 'CurrentFigure', fig2 );
+plotAssets( SS, tregB4, tnumB4 );
 
-subplot(3,2,1)
-
-bar([1:1:tnumB4], tregB4(:,1))	% initial trader liquidities
-xlabel('trader ID')
-ylabel('initial trader liquidities')
-
-subplot(3,2,2)
-
-bar([1:1:tnumB4], tregB4(:,2))	% initial trader share holdings
-xlabel('trader ID')
-ylabel('initial trader share holdings')
-
-subplot(3,2,3)
-
-bar([1:1:SS.tnum], SS.treg(:,1))	% final trader liquidities
-xlabel('trader ID')
-ylabel('final trader liquidities')
-
-subplot(3,2,4)
-
-bar([1:1:SS.tnum], SS.treg(:,2))	% final trader share holdings
-xlabel('trader ID')
-ylabel('final trader share holdings')
-
-%% Plot Estimated firm value
-
-subplot(3,2,[5 6])
-
-inds = (SS.sbp - mod(SS.sbp,3))/3;
-
-
-
-Value = [SS.totShares*SS.p0,SS.totShares*SS.tprice(inds,1),SS.totShares*SS.tprice(2*inds,1), SS.totShares*SS.tprice(SS.sbp,1)];
-
-bar([0,SS.tprice(inds,7),SS.tprice(2*inds,7), SS.tprice(SS.sbp,7)],Value)
-xlabel('time (s)')
-ylabel('estimated firm value')
+Ubooks = unique(SS.books(1:1:SS.sbs,2));
+length(Ubooks)
+SS.sbs
+Ubookb = unique(SS.bookb(1:1:SS.sbb,2));
+length(Ubookb)
+SS.sbb
 
 toc;

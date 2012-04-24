@@ -15,9 +15,11 @@ function [ SS ] = ageCheckSeller(SS, m, t)
     
     
     if isempty(pagedind) ~= 1
+        
+        lgt = length( pagedind );
     
-        if length(pagedind) > 1                                             %queue of traders who want to refresh auction
-            warning('Number of entries to be be renewed');
+        if length( lgt ) > 1                                                %queue of traders who want to refresh auction
+            warning('Debug', 'Number of entries to be renewed: %d', lgt);
             
         end
         
@@ -30,18 +32,25 @@ function [ SS ] = ageCheckSeller(SS, m, t)
         %   Book Format:
         %   day, time, seller/buyer id, s/b price, shares, dirty bit, age bit, new
         %   entry number, index of aged entry
+        
+        %for i = 1:1:lgt
+                                                                            %loop for each auction to be refreshed
+        
+            %orind = SS.bookspaging( i, 4 );                                 %get original auction index
+            orind = SS.bookspaging( pagedind, 4 );                                 %get original auction index
+            auction = SS.books( orind, : );   
+            ind = auction(3);                                               %index of the chosen trader
+            arefresh = auction(8) + 1;                                      %amount of refresh
             
-        orind = SS.bookspaging( pagedind, 4 );                             %get original auction index
-        auction = SS.books( orind, : );   
-        ind = auction(3);                                               %index of the chosen trader
-        arefresh = auction(8) + 1;                                      %amount of refresh
+            SS.books( orind, [6, 7] ) = [0, 1]';                            %old entry invalid 
+                                                                            %old entry aged
+            SS.bookspaging( pagedind, : ) = [];                             %erase old entry in paging matix
+            SS.sbsp = SS.sbsp - 1;
             
-        SS.books( orind, [6, 7] ) = [0, 1]';                               %old entry invalid 
-                                                                        %old entry aged
-        SS.bookspaging( pagedind, : ) = [];                                %erase old entry in paging matix
-        SS.sbsp = SS.sbsp - 1;
+            [ SS ] = seller(SS, m, t, ind, arefresh, orind);
             
-        [ SS ] = seller(SS, m, t, ind, arefresh, orind);
+            
+        %end
                 
         
     end

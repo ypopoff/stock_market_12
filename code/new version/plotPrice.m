@@ -1,11 +1,13 @@
-%©2012 ETH Zürich
+%©2012 ETH Z?rich
 %Bambolei
 %Nicholas Eyring, Youri Popoff
 %Simulation of trading in an artificial stock market
 
 
-function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
-%PLOTPRICE plots every ?t the price evolution
+function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 )
+%PLOTPRICE plots every deltat the price evolution
+
+    set( 0, 'CurrentFigure', fig1 );
     
     %TODO Plot intervall
     deltat = 50;        %plot every 50s
@@ -13,23 +15,11 @@ function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
 
     if mod(i, deltat) == 0
         
-
+        [ ymin, ymax ] = dynamicLimity( SS.a, SS.d, ymin, ymax );
 
         xmax = SS.M * SS.T;
+        
 
-        
-        %[ ymin ymax ] = dynamicLimity( a, d, ymin, ymax );
-        
-        subplot( 2, 2, [3 4] );
-        for j = 1:1:SS.M
-            
-           line( [ j*SS.T j*SS.T ], [ ymin ymax ] );                              %draw vertical line for each day 
-            
-        end
-        
-        
-        %hold on;
-        
         %% Get last transaction infos & plot in green
         if SS.sbp ~= 0
             
@@ -53,14 +43,18 @@ function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
             
         end
         
-        
+
         
         %% Buyer price subplot 
         subplot(2,2,1);
-
-            Ap = SS.bookb(1:1:SS.sbb,2);
-            Bp = SS.bookb(1:1:SS.sbb,4);
-            plot(Ap, Bp);
+            hold on;
+           
+            Ap1 = [ 0; SS.bookb(1:1:int32(SS.sbb),2) ];
+            Bp1 = [ SS.p0; SS.bookb(1:1:int32(SS.sbb),4) ];
+            plot(Ap1, Bp1, 'b');
+            
+            hold off;
+            
             xlim([0 xmax]);
             ylim([ymin ymax]);
             xlabel('time in seconds');
@@ -70,10 +64,14 @@ function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
             
         %% Seller price subplot
         subplot(2,2,2);
-
-            App = SS.books(1:1:SS.sbs,2);
-            Bpp = SS.books(1:1:SS.sbs,4);
-            plot(App, Bpp);
+            hold on;
+            
+            Ap2 = [ 0; SS.books(1:1:int32(SS.sbs),2) ];
+            Bp2 = [ SS.p0; SS.books(1:1:int32(SS.sbs),4) ];
+            plot(Ap2, Bp2, 'b');
+            
+            hold off;
+            
             xlim([0 xmax]);
             ylim([ymin ymax]);
             xlabel('time in seconds');
@@ -83,11 +81,10 @@ function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
         
         %% Transaction price subplot
         subplot(2,2,[3 4]);
-
             hold on;
 
-            Ap3 = [ 0; SS.tprice( 1:1:SS.sbp, 7 ) ];
-            Bp3 = [ SS.p0; SS.tprice( 1:1:SS.sbp, 1 ) ];
+            Ap3 = [ 0; SS.tprice( 1:1:int32(SS.sbp), 7 ) ];
+            Bp3 = [ SS.p0; SS.tprice( 1:1:int32(SS.sbp), 1 ) ];
             plot( Ap3, Bp3, 'r' );
             
             hold off;
@@ -99,12 +96,26 @@ function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
             title('Transaction price');
             
             
-        drawnow;
+            
+            %% Vertical day line
 
+        for j = 1:1:SS.M
+            
+            subplot( 2, 2, 1 );
+            line( [ j*SS.T j*SS.T ], [ ymin ymax ], 'Color', [0.75, 0.75, 0.75] );
+            
+            subplot( 2, 2, 2 );
+            line( [ j*SS.T j*SS.T ], [ ymin ymax ], 'Color', [0.75, 0.75, 0.75] );
+            
+            subplot( 2, 2, [3 4] );
+            
+        end
+             
+            
+        drawnow;
 
         
     end
 
 
 end
-

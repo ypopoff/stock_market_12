@@ -1,11 +1,14 @@
-%©2012 ETH Zürich
+%©2012 ETH Z?rich
 %Bambolei
 %Nicholas Eyring, Youri Popoff
 %Simulation of trading in an artificial stock market
 
 
-function [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sbp, p0, a, d, ymin, ymax )
+function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax )
 %PLOTPRICE plots every deltat the price evolution
+
+
+    set(gcf,'doublebuffer','on') ; % remove flicker
     
     %TODO Plot intervall
     deltat = 50;        %plot every 50s
@@ -16,29 +19,28 @@ function [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sb
 
 
         %TODO Define as global
-        xmax = M * T;
+        xmax = SS.M * SS.T;
         
         %[ ymin ymax ] = dynamicLimity( a, d, ymin, ymax );
         
         subplot( 2, 2, [3 4] );
-        for j = 1:1:M
+        for j = 1:1:SS.M
             
-           line( [ j*T j*T ], [ ymin ymax ] );                              %draw vertical line for each day 
+           line( [ j*SS.T j*SS.T ], [ ymin ymax ] );                              %draw vertical line for each day 
             
         end
-        
         
         
         %hold on;
         
         %% Get last transaction infos & plot in green
-        if sbp ~= 0
+        if SS.sbp ~= 0
             
-            info = tprice( sbp, : );
+            info = SS.tprice( SS.sbp, : );
             ent1 = info( 4 );
-            ent1info = books( ent1, : );
+            ent1info = SS.books( ent1, : );
             ent2 = info( 6 );
-            ent2info = bookb( ent2, : );
+            ent2info = SS.bookb( ent2, : );
             
             x = ent2info( 2 ); y = ent2info( 4 );
             subplot(2,2,1); plot( x, y, 'g*');
@@ -59,9 +61,10 @@ function [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sb
         %% Buyer price subplot 
         subplot(2,2,1);
             hold on;
-            
-            Ap1 = bookb(1:1:sbb,2);
-            Bp1 = bookb(1:1:sbb,4);
+           
+            bb = int32(SS.sbb);
+            Ap1 = bookb(1:1:bb,2);
+            Bp1 = bookb(1:1:bb,4);
             plot(Ap1, Bp1, 'b');
             
             hold off;
@@ -77,8 +80,8 @@ function [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sb
         subplot(2,2,2);
             hold on;
             
-            Ap2 = books(1:1:sbs,2);
-            Bp2 = books(1:1:sbs,4);
+            Ap2 = books(1:1:bs,2);
+            Bp2 = books(1:1:int32(SS.sbs),4);
             plot(Ap2, Bp2, 'b');
             
             hold off;
@@ -94,8 +97,8 @@ function [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sb
         subplot(2,2,[3 4]);
             hold on;
 
-            Ap3 = [ 0; tprice( 1:1:sbp, 7 ) ];
-            Bp3 = [ p0; tprice( 1:1:sbp, 1 ) ];
+            Ap3 = [ 0; tprice( 1:1:int32(SS.sbp), 7 ) ];
+            Bp3 = [ p0; tprice( 1:1:int32(SS.sbp), 1 ) ];
             plot( Ap3, Bp3, 'r' );
             
             hold off;
@@ -105,10 +108,12 @@ function [ ymin, ymax ] = plotPrice( i, M, T, bookb, sbb, books, sbs, tprice, sb
             xlabel('time in seconds');
             ylabel('transaction price');
             title('Transaction price');
+            
+            
+        drawnow;
 
         
     end
 
 
 end
-
