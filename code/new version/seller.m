@@ -9,15 +9,17 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, b
 %   Calculates the asking price
 %   Checks if transaction needs to be executed
 %   Transaction executed
+  
 
         n = normrnd(mu, sigma, 1, 1);                                       %factor ni to calculate the price
-        p = n * a;                                                          %asked price
+        p = n * a;                                                          %asked price - a = a0 for the first entry
+        a = p;                                                              %save latest entry price
         
         %TODO amount of shares
         shares = 1;                                                         %amount of shares
         
         %TODO maximal age
-        a0 = 100;
+        a0 = 600;
         
 
         if solvencySeller( treg, ind, shares ) == true

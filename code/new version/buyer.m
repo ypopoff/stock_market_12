@@ -9,15 +9,17 @@ function [ tprice, bookb, books, a, d, sbb, sbs, sbp, treg, bookbpaging, sbbp, b
 %   Calculates the price of the bid
 %   Checks if transaction needs to be executed
 %   Transaction executed
-
+       
+        
         n = normrnd(mu, sigma, 1, 1);                                       %factor ni used to calculate price
-        p = n * d;                                                          %price of the bid
+        p = n * d;                                                          %price of the bid - d = p0 for the first entry
+        d = p;                                                              %save latest entry price
         
         %TODO amount of shares
         shares = 1;
         
         %TODO maximal age
-        a0 = 100;
+        a0 = 600;
           
         
         if solvencyBuyer( treg, ind, p, shares ) == true
