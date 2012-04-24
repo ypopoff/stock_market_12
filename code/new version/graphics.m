@@ -28,3 +28,9 @@ fig2hg = fig2wd * scrratio;
 
 fig2 = figure( 2 );                                                         %position & size of the figure
 set( fig2, 'OuterPosition', [ fig1wd, hg, fig2wd, fig2hg ] );
+
+fig3wd = wd * 0.25;
+fig3hg = fig3wd * scrratio;
+
+fig3 = figure( 3 );
+set( fig3, 'OuterPosition', [ 0.75/2 * wd, hg, fig3wd, fig3hg  ] );

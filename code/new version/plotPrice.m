@@ -108,6 +108,7 @@ function [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 )
             line( [ j*SS.T j*SS.T ], [ ymin ymax ], 'Color', [0.75, 0.75, 0.75] );
             
             subplot( 2, 2, [3 4] );
+            line( [ j*SS.T j*SS.T ], [ ymin ymax ], 'Color', [0.75, 0.75, 0.75] );
             
         end
              

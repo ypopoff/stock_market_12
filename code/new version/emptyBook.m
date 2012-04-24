@@ -11,10 +11,13 @@ function [ SS ] = emptyBook( SS )
 
     if SS.bkempty == 1
 
-        SS.bookb(1:1:SS.sbb, :) = [];              %book emptying
-        SS.sbb = 0;
-        SS.books(1:1:SS.sbs, :) = [];
-        SS.sbs = 0;
+        SS.bookbpaging(1:1:SS.sbbp, :) = [];              %book emptying
+        SS.sbbp = 0;
+        SS.bookspaging(1:1:SS.sbsp, :) = [];
+        SS.sbsp = 0;
+        
+        SS.bookb( 1:1:sbb, 6 ) = zeros( sbb, 1 );
+        SS.books( 1:1:sbs, 6 ) = zeros( sbs, 1 );
             
     end
 
