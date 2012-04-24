@@ -93,8 +93,8 @@ for i = 1:1:(SS.M)*(SS.T)
     %% Age Check
         
 
-        [ SS ] = ageCheckBuyer(SS, m, i);
-        [ SS ] = ageCheckSeller(SS, m, i);
+    [ SS ] = ageCheckBuyer(SS, m, i);
+    [ SS ] = ageCheckSeller(SS, m, i);
 
         
     
@@ -102,7 +102,7 @@ for i = 1:1:(SS.M)*(SS.T)
 
     %% Transaction Section
     
-        [ SS ] = transaction(SS, i);
+    [ SS ] = transaction(SS, i);
         
         
 end
