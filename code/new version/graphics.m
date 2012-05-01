@@ -34,3 +34,5 @@ fig3hg = fig3wd * scrratio;
 
 fig3 = figure( 3 );
 set( fig3, 'OuterPosition', [ 0.75/2 * wd, hg, fig3wd, fig3hg  ] );
+
+fig4 = figure( 4 );

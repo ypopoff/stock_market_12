@@ -34,6 +34,7 @@ clear all; clc; clf;
 
 graphics;
 init;
+pind = 0;
 
 tregB4 = SS.treg;                                                           % initial trader matrix used for comparison
 tnumB4 = SS.tnum;
@@ -104,10 +105,14 @@ for i = 1:1:(SS.M)*(SS.T)
     
     %% Plot section live
     
-    [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
+    %[ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
+    %pind = LogReturns( i, SS, fig4, pind );
         
         
 end
+
+logReturns(SS,i);
+SS.ret
 
 
 
