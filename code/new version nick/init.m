@@ -17,7 +17,7 @@ sigma = 0.005;                      %mean of the gaussian (normal) distribution
 
 M = 3;                              %number of days
 m = 0;                              %starting at day 0
-h = 2;                              %hours in one trading day
+h = 0.2;                              %hours in one trading day
 T = 60*60*h;                        %number of seconds in one trading day
 t = 0;                              %global time variable
 
@@ -84,6 +84,10 @@ savtp = 0;                          %actual number of elements in avgtprice
 %% Plot parameter section
 ymin = p0 - 25;
 ymax = p0 + 25;
+
+
+%% Log returns
+ret = zeros( 1000, 2 );
 
 %% Define and initialize current system state structure variable
 %   Group system parameters in a single structure for convenience and

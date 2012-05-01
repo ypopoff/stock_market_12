@@ -21,10 +21,9 @@ function [ SS ] = logReturns( SS, i )
     dt = 60;
     b = SS.p0;
     SS.retsize = ceil( i / dt );
-    SS.ret = zeros( SS.retsize, 2 );
 
     
-    %% Find last tick (previous-tick interpolation
+    %% Find last tick (previous-tick interpolation)
     a = SS.tprice( tindex, 7 );
     for tottime = 1:1:i
 
@@ -32,8 +31,18 @@ function [ SS ] = logReturns( SS, i )
 
             b = SS.tprice( tindex, 1 );
 
+
             tindex = tindex + 1;
             a = SS.tprice( tindex, 7 );
+            
+            while ( tottime == a )      %more than 1 transaction pro time
+                
+                tindex = tindex + 1;
+                a = SS.tprice( tindex, 7 );
+                
+                b = SS.tprice( tindex, 1 );
+                   
+            end
 
         end
 

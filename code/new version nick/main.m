@@ -105,11 +105,12 @@ for i = 1:1:(SS.M)*(SS.T)
     [ SS ] = weightedTP( SS, i );                                              %update weighted transaction price matrix
     
     [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
+    %plotLogReturns( SS, fig4 );
         
         
 end
+i
 
-logReturns(SS,i);
 
 %% Plot section result
 set( 0, 'CurrentFigure', fig2 );

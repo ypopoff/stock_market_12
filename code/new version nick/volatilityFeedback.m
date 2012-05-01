@@ -10,13 +10,16 @@ function [ SS ] = volatilityFeedback( k, SS, i)
 
     T = 599 + randi(5401);                  % determine time window
 
-    [n,~] = size(SS.ret);                   % get number of lines in ret matrix
+    %[n,~] = size(SS.ret);                   % get number of lines in ret matrix
 
-    baseIndex = n - floor(T/60);            % calulate base index
+    %baseIndex = n - floor(T/60);            % calulate base index
+    baseIndex = SS.retsize - floor(T/60);            % calulate base index
+    
 
     if baseIndex > 0
     
-        logRet = SS.ret(baseIndex:end,2);   % extract wanted vector from ret matrix
+        %logRet = SS.ret(baseIndex:end,2);   % extract wanted vector from ret matrix
+        logRet = SS.ret(baseIndex:SS.retsize,2);   % extract wanted vector from ret matrix
 
         sigmaT = std(logRet);               % determine the standard deviation of log returns in period T
                                     

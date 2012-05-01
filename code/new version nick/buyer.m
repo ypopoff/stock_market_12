@@ -9,7 +9,7 @@ function [ SS ] = buyer( SS, m, t, ind, arefresh, orind, i )
 %   Calculates the price of the bid and executes the transaction if there
 %   is a price overlap
         
-        %[ SS ] = volatilityFeedback( 1.5, SS, i);                           % account for past market volatility
+        [ SS ] = volatilityFeedback( 1.5, SS, i);                           % account for past market volatility
 
         n = normrnd(SS.mu, SS.sigma, 1, 1);                                 %factor ni used to calculate price
         
