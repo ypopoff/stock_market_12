@@ -1,3 +1,8 @@
+%©2012 ETH Zürich
+%Bambolei
+%Nicholas Eyring, Youri Popoff
+%Simulation of trading in an artificial stock mark
+
 function [ SS ] = buyerTransaction( SS, ind, shares, p, a0, t )
 %   checks if a transaction should occur when a new buyer entry is
 %   created and carries it out if need be (eventually with multiple sellers)

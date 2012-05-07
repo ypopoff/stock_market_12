@@ -4,12 +4,12 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ SS ] = buyer( SS, m, t, ind, arefresh, orind, i )
+function [ SS ] = buyer( SS, m, t, ind, arefresh, orind )
 %buyer Completes the tasks of the buyer (stat = 0)
 %   Calculates the price of the bid and executes the transaction if there
 %   is a price overlap
         
-        [ SS ] = volatilityFeedback( 1.5, SS, i);                           % account for past market volatility
+        [ SS ] = volatilityFeedback( 1.5, SS );                           % account for past market volatility
         
         n = normrnd(SS.mu, SS.sigma, 1, 1);                                 %factor ni used to calculate price
         
@@ -25,7 +25,7 @@ function [ SS ] = buyer( SS, m, t, ind, arefresh, orind, i )
        
         maxShares = floor((SS.treg(ind,1))/p);                              %maximum number of shares trader can buy
         
-if maxShares > 0   % otherwise no order
+if maxShares > 0 && p > 0   % otherwise no order
     
         shares = randi(maxShares);                                          %random fraction of maximum
         

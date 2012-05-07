@@ -21,10 +21,6 @@ h = 0.2;                              %hours in one trading day
 T = 60*60*h;                        %number of seconds in one trading day
 t = 0;                              %global time variable
 
-ret = [];
-retsize = [];
-
-
 %% IPO section
 
 IPO                                 % initial public offering (script)
@@ -88,9 +84,11 @@ ymax = p0 + 25;
 
 %% Log returns
 ret = zeros( 1000, 2 );
+retsize = 0;
+dt = 60;
 
 %% Define and initialize current system state structure variable
 %   Group system parameters in a single structure for convenience and
-%   clarity (26 elements)
+%   clarity (27 elements)
 
-SS = struct('treg',treg,'tnum',tnum,'totShares',totShares,'bookbpaging',bookbpaging,'sbbp',sbbp,'bookspaging',bookspaging,'sbsp',sbsp,'bkempty', bkempty,'bookb',bookb,'sbb',sbb,'books',books,'sbs',sbs,'a',a,'d',d,'mu',mu,'lambda',lambda,'sigma',sigma,'p0',p0,'tprice',tprice,'sbp',sbp,'T',T,'M',M,'ret',ret,'retsize',retsize, 'avgtprice',avgtprice,'savtp',savtp);
+SS = struct('treg',treg,'tnum',tnum,'totShares',totShares,'bookbpaging',bookbpaging,'sbbp',sbbp,'bookspaging',bookspaging,'sbsp',sbsp,'bkempty', bkempty,'bookb',bookb,'sbb',sbb,'books',books,'sbs',sbs,'a',a,'d',d,'mu',mu,'lambda',lambda,'sigma',sigma,'p0',p0,'tprice',tprice,'sbp',sbp,'T',T,'M',M,'ret',ret,'retsize',retsize, 'dt', dt, 'avgtprice',avgtprice,'savtp',savtp);

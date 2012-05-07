@@ -40,9 +40,11 @@ tnumB4 = SS.tnum;
 
 
 %% Simulation section
-%t = 1+round(exprnd(SS.lambda));
+t = 1+round(exprnd(SS.lambda));
 
-t = 3;
+%t = 3;
+
+lrt = SS.dt;                                                                % used for log returns calculation intervals
 
 for i = 1:1:(SS.M)*(SS.T)
 
@@ -51,14 +53,24 @@ for i = 1:1:(SS.M)*(SS.T)
     SS.bookbpaging = ageUpdate( SS.bookbpaging, SS.sbbp );
     SS.bookspaging = ageUpdate( SS.bookspaging, SS.sbsp );
     
+    %% Calculate Log Returns    
+    
+    if i == lrt
+        
+        [ SS ] = logReturns( SS );                                          % calculate log returns        
+        
+        lrt = lrt + SS.dt;                                                     % increment lrt for next log returns calculation
+        
+    end
+    
     
     %% New Book Entry Section
     if i == t
     
-        %Tau = 1+round(exprnd(SS.lambda));                                      %step between two book entries
+        Tau = 1+round(exprnd(SS.lambda));                                      %step between two book entries
                                                                                %(random number; exponential distribution)
                                                                                
-        Tau = 3;
+        %Tau = 3;
     
         t = t + Tau;
         if t - m * SS.T > SS.T                                                 %t - m * T = actual time in the trading day m
@@ -83,11 +95,11 @@ for i = 1:1:(SS.M)*(SS.T)
         
         if stat == 0                                                        %we have a buy order (0)
         
-            [ SS ] = buyer(SS, m, i, ind, arefresh, orind, i );
+            [ SS ] = buyer(SS, m, i, ind, arefresh, orind);
             
         else                                                                %we have a sell order (1)
 
-            [ SS ] = seller(SS, m, i, ind, arefresh, orind, i );
+            [ SS ] = seller(SS, m, i, ind, arefresh, orind);
             
         end
 

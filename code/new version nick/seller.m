@@ -4,12 +4,12 @@
 %Simulation of trading in an artificial stock market
 
 
-function [ SS ] = seller( SS, m, t, ind, arefresh, orind, i )
+function [ SS ] = seller( SS, m, t, ind, arefresh, orind )
 %seller Completes the tasks of the seller (stat = 1)
 %   Calculates the asking price and executes the transaction if there if a
 %   price overlap
 
-        [ SS ] = volatilityFeedback( 1.5, SS, i);                           % account for past market volatility
+        [ SS ] = volatilityFeedback( 1.5, SS );                           % account for past market volatility
               
         n = normrnd(SS.mu, SS.sigma, 1, 1);                                 %factor ni to calculate the price
         
@@ -20,10 +20,10 @@ function [ SS ] = seller( SS, m, t, ind, arefresh, orind, i )
         %end
         
         p = n * SS.a;                                                       %asked price - a = a0 for the first entry
-        
+                           
         SS.a = p;                                                           %save latest entry price
 
-if SS.treg(ind,2) > 0   % otherwise no order
+if SS.treg(ind,2) > 0 && p > 0   % otherwise no order
         
         shares = randi(SS.treg(ind,2));                                     %random fraction of quantity of stocks owned by trader                               
         
