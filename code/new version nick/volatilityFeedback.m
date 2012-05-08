@@ -24,10 +24,17 @@ function [ SS ] = volatilityFeedback( k, SS )
    sigmaT = std(logRet);               % determine the standard deviation of log returns in period T
                                     
    sigmaN = k * sigmaT;                % sigmaN is a function of sigmaT
+   
+   if sigmaN ~= 0           % does this make sense ?
 
    SS.sigma = sigmaN;                  % set new value for sigma
    
-    end
+   else
+       SS.sigma = 0.005;                % back to initial value
+   end
+   
+    
+   end
     
 end
 
