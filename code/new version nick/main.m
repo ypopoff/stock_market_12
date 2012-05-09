@@ -121,7 +121,8 @@ for i = 1:1:(SS.M)*(SS.T)
         
         
 end
-i
+
+plotLogReturns( SS, fig4 )
 
 
 %% Plot section result

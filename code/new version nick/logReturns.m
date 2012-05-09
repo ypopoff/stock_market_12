@@ -17,8 +17,9 @@ function [ SS ] = logReturns( SS )
 % ...
 
      
-    tindex = SS.savtp;                     % use weighted transaction price
-        
+    %tindex = SS.savtp;                     % use weighted transaction price
+    tindex = SS.sbp; 
+    
     SS.retsize = SS.retsize + 1;           % increment retsize
     
    
@@ -26,7 +27,7 @@ function [ SS ] = logReturns( SS )
      
   if tindex > 0                            % we have transaction values !
     
-    SS.ret(SS.retsize,1) = SS.avgtprice( tindex, 1 );  % write tick price into matrix
+    SS.ret(SS.retsize,1) = SS.tprice( tindex, 1 );  % write tick price into matrix
 
 
     %% Compute log-return

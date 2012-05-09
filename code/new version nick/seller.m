@@ -9,7 +9,7 @@ function [ SS ] = seller( SS, m, t, ind, arefresh, orind )
 %   Calculates the asking price and executes the transaction if there if a
 %   price overlap
 
-        [ SS ] = volatilityFeedback( 1.5, SS );                           % account for past market volatility
+        %[ SS ] = volatilityFeedback( 1.5, SS );                           % account for past market volatility
               
         n = normrnd(SS.mu, SS.sigma, 1, 1);                                 %factor ni to calculate the price
         
