@@ -111,8 +111,8 @@ for i = 1:1:(SS.M)*(SS.T)
         
 end
 
-logReturns(SS,i);
-SS.ret
+LogReturnsPlot(i,SS,figure(4),pind);
+%SS.ret
 
 
 

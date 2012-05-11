@@ -7,7 +7,7 @@
 %   Contains all initial parameters
 %   Creates trader matrix & empty book matrixes
 
-bkempty = 1;                        %book emptying parameter
+bkempty = 0;                        %book emptying parameter
                                     %0: Off, 1: On
 
 lambda = 20;                        %mean of the exponential distribution
@@ -17,7 +17,7 @@ sigma = 0.005;                      %mean of the gaussian (normal) distribution
 
 M = 3;                              %number of days
 m = 0;                              %starting at day 0
-h = 2;                              %hours in one trading day
+h = 5;                              %hours in one trading day
 T = 60*60*h;                        %number of seconds in one trading day
 t = 0;                              %global time variable
 
