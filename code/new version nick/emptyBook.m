@@ -16,8 +16,8 @@ function [ SS ] = emptyBook( SS )
         SS.bookspaging(1:1:SS.sbsp, :) = [];
         SS.sbsp = 0;
         
-        SS.bookb( 1:1:sbb, 6 ) = zeros( sbb, 1 );
-        SS.books( 1:1:sbs, 6 ) = zeros( sbs, 1 );
+        SS.bookb( 1:1:SS.sbb, 6 ) = zeros( SS.sbb, 1 );
+        SS.books( 1:1:SS.sbs, 6 ) = zeros( SS.sbs, 1 );
             
     end
 

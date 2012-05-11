@@ -17,7 +17,7 @@ sigma = 0.005;                      %mean of the gaussian (normal) distribution
 
 M = 3;                              %number of days
 m = 0;                              %starting at day 0
-h = 1;                              %hours in one trading day
+h = 0.2;                              %hours in one trading day
 T = 60*60*h;                        %number of seconds in one trading day
 t = 0;                              %global time variable
 

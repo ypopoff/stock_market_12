@@ -27,8 +27,8 @@ function [ SS ] = buyer( SS, m, t, ind, arefresh, orind )
         
 if maxShares > 0 && p > 0   % otherwise no order
     
-        shares = randi(maxShares);                                          %random fraction of maximum
-        
+        %shares = randi(maxShares);                                          %random fraction of maximum
+        shares = 1;
         
         %TODO maximal age
         a0 = 100;

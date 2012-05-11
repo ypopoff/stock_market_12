@@ -47,7 +47,8 @@ function [ SS ] = ageCheckBuyer(SS, m, t)
             SS.bookbpaging( pagedind, : ) = [];                             %erase old entry in paging matix
             SS.sbbp = SS.sbbp - 1;
             
-            [ SS ] = buyer(SS, m, t, ind, arefresh, orind );
+            %TODO switch
+            %[ SS ] = buyer(SS, m, t, ind, arefresh, orind );
         
             
         %end

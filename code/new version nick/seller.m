@@ -25,8 +25,8 @@ function [ SS ] = seller( SS, m, t, ind, arefresh, orind )
 
 if SS.treg(ind,2) > 0 && p > 0   % otherwise no order
         
-        shares = randi(SS.treg(ind,2));                                     %random fraction of quantity of stocks owned by trader                               
-        
+        %shares = randi(SS.treg(ind,2));                                     %random fraction of quantity of stocks owned by trader                               
+        shares = 1;
         
         %TODO maximal age
         a0 = 100;
