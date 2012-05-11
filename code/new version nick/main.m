@@ -57,7 +57,7 @@ for i = 1:1:(SS.M)*(SS.T)
     
     if i == lrt
         
-        [ SS ] = logReturns( SS );                                          % calculate log returns        
+        [ SS ] = logReturns( SS, i );                                          % calculate log returns        
         
         lrt = lrt + SS.dt;                                                     % increment lrt for next log returns calculation
         
