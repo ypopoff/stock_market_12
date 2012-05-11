@@ -105,8 +105,8 @@ for i = 1:1:(SS.M)*(SS.T)
     
     %% Plot section live
     
-    %[ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
-    %pind = LogReturns( i, SS, fig4, pind );
+    [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
+
         
         
 end
