@@ -7,7 +7,7 @@
 %   Contains all initial parameters
 %   Creates trader matrix & empty book matrixes
 
-bkempty = 0;                        %book emptying parameter
+bkempty = 1;                        %book emptying parameter
                                     %0: Off, 1: On
 
 lambda = 20;                        %mean of the exponential distribution
@@ -15,15 +15,38 @@ mu = 1;                             %deviation
 sigma = 0.005;                      %mean of the gaussian (normal) distribution
 
 
-M = 3;                              %number of days
+M = 10;                              %number of days
 m = 0;                              %starting at day 0
-h = 1;                              %hours in one trading day
+h = 7;                              %hours in one trading day
 T = 60*60*h;                        %number of seconds in one trading day
 t = 0;                              %global time variable
 
-%% IPO section
+%% Trader & liquidities
+%   initial trader matrix (treg) is determined
+%   treg format: liquidities, shares -> row number is trader ID
 
-IPO                                 % initial public offering (script)
+tnum = 100;                                 % number of traders
+
+tliq = 10^5;                             % individual trader liquidity
+
+totShares = 1000*tnum;                      % total number of distributed shares
+
+p0 = 100;                                   % starting unit price
+
+tshares = totShares/tnum;                % individual trader shares
+
+a = p0;                                     % asking price: seller
+d = p0;                                     % bid price: buyer
+
+one = ones(tnum,1);
+
+treg = [tliq*one, tshares*one, one * 0];       % trader matrix (2 columns)
+
+for i = 1:1:tnum
+    
+    treg( i, 3 ) = 599 + randi(5401);                  % determine time window
+    
+end
 
 
 %% Books initialisation section (seller & buyer book)
@@ -91,4 +114,18 @@ dt = 60;
 %   Group system parameters in a single structure for convenience and
 %   clarity (27 elements)
 
-SS = struct('treg',treg,'tnum',tnum,'totShares',totShares,'bookbpaging',bookbpaging,'sbbp',sbbp,'bookspaging',bookspaging,'sbsp',sbsp,'bkempty', bkempty,'bookb',bookb,'sbb',sbb,'books',books,'sbs',sbs,'a',a,'d',d,'mu',mu,'lambda',lambda,'sigma',sigma,'p0',p0,'tprice',tprice,'sbp',sbp,'T',T,'M',M,'ret',ret,'retsize',retsize, 'dt', dt, 'avgtprice',avgtprice,'savtp',savtp);
+debug = zeros( 1000, 4 );
+sd1 = 0; sd2 = 0; sd3 = 0; sd4 = 0;
+
+global SS;
+SS = struct('treg',treg,'tnum',tnum,'totShares',totShares,'bookbpaging',bookbpaging,'sbbp',sbbp,'bookspaging',bookspaging,'sbsp',sbsp,'bkempty', bkempty,'bookb',bookb,'sbb',sbb,'books',books,'sbs',sbs,'a',a,'d',d,'mu',mu,'lambda',lambda,'sigma',sigma,'p0',p0,'tprice',tprice,'sbp',sbp,'T',T,'M',M,'ret',ret,'retsize',retsize, 'dt', dt, 'avgtprice',avgtprice,'savtp',savtp,'debug',debug,'sd1',sd1,'sd2',sd2,'sd3',sd3,'sd4',sd4);
+
+%% System parameters
+%   Structure containing the parameters of the system
+
+liveplot = 1;
+entrefresh = 0;
+volfeed = 1;
+
+global SPa;
+SPa = struct('liveplot', liveplot, 'entrefresh', entrefresh, 'volfeed', volfeed );

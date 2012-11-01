@@ -30,6 +30,10 @@ tic;
 clear all; clc; clf;
 
 
+s = RandStream('mt19937ar','Seed',0);
+RandStream.setDefaultStream(s);
+
+
 %% Initialisation section
 
 graphics;
@@ -40,7 +44,7 @@ tnumB4 = SS.tnum;
 
 
 %% Simulation section
-t = 1+round(exprnd(SS.lambda));
+t = 1+round(exprnd(SS.lambda));                                             % time of first entry
 
 %t = 3;
 
@@ -57,7 +61,7 @@ for i = 1:1:(SS.M)*(SS.T)
     
     if i == lrt
         
-        [ SS ] = logReturns( SS, i );                                          % calculate log returns        
+        [ SS ] = logReturns( SS );                                          % calculate log returns        
         
         lrt = lrt + SS.dt;                                                     % increment lrt for next log returns calculation
         
@@ -68,15 +72,17 @@ for i = 1:1:(SS.M)*(SS.T)
     if i == t
     
         Tau = 1+round(exprnd(SS.lambda));                                      %step between two book entries
-                                                                               %(random number; exponential distribution)
-                                                                               
-        %Tau = 3;
+                                                                               %(random number; exponential distribution
+        SS.sd2 = SS.sd2 + 1;
+        SS.debug( SS.sd2, 2 ) = Tau;
+        
     
         t = t + Tau;
-        if t - m * SS.T > SS.T                                                 %t - m * T = actual time in the trading day m
+        if t - m * SS.T > SS.T                                                 % t - m * T = actual time in the trading day m
         
 
             m = m + 1;                                                         % increment number of days past
+            m
             
             [ SS ] = emptyBook( SS );
 
@@ -87,17 +93,17 @@ for i = 1:1:(SS.M)*(SS.T)
        
         %% Book entry
         
-        ind = randi(SS.tnum, 1, 1);                                         %index of the chosen trader
-        stat = randi(2, 1, 1) - 1;                                          %choose between buyer (0) or seller (1)
+        ind = randi(SS.tnum, 1, 1);                                         % index of the chosen trader
+        stat = randi(2, 1, 1) - 1;                                          % choose between buyer (0) or seller (1)
         
-        arefresh = 0;                                                       %bit to tell whether the entry is new or refreshed
-        orind = 0;                                                          %new auction: no aged entry line
+        arefresh = 0;                                                       % bit to tell whether the entry is new or refreshed
+        orind = 0;                                                          % new auction: no aged entry line
         
-        if stat == 0                                                        %we have a buy order (0)
+        if stat == 0                                                        % we have a buy order (0)
         
             [ SS ] = buyer(SS, m, i, ind, arefresh, orind);
             
-        else                                                                %we have a sell order (1)
+        else                                                                % we have a sell order (1)
 
             [ SS ] = seller(SS, m, i, ind, arefresh, orind);
             
@@ -108,21 +114,42 @@ for i = 1:1:(SS.M)*(SS.T)
     
     
     %% Age Check
-
+    
     [ SS ] = ageCheckBuyer(SS, m, i);
     [ SS ] = ageCheckSeller(SS, m, i);
 
+
+    [ SS ] = weightedTP( SS, i );                                           % update weighted transaction price matrix
+    
+    
     %% Plot section live
+    liveplot = 0;                                                           % live plot on/off
     
-    [ SS ] = weightedTP( SS, i );                                              %update weighted transaction price matrix
-    
-    [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
-    %plotLogReturns( SS, fig4 );
+    if liveplot == 1
+        
+        [ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
+        %plotLogReturns( SS, fig4 );
+        
+    end
         
         
 end
 
-plotLogReturns( SS, fig4 )
+plotLogReturns( SS, fig4 );
+[ ymin, ymax ] = plotPrice( i, SS, ymin, ymax, fig1 );
+figure(5);
+hist(SS.debug(1:SS.sd2,2));
+figure(6);
+hist(SS.debug(1:SS.sd3,3));
+figure(7);
+plot([ones(SS.sd1,1),SS.debug(1:SS.sd1,1)]);
+ylim([0.0 0.2]);
+sum(SS.debug(1:10,1))/10
+sum(SS.debug(1:20,1))/20
+sum(SS.debug(1:30,1))/30
+sum(SS.debug(1:40,1))/40
+figure(8);
+hist(SS.treg(1:SS.tnum,1) + SS.p0 * SS.treg(1:SS.tnum,2));
 
 
 %% Plot section result

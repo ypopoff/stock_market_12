@@ -25,7 +25,7 @@ function [ SS ] = ageCheckBuyer(SS, m, t)
         
     
         %just refresh the first element    
-        pagedind = pagedind(1);
+        %pagedind = pagedind(1);
         
         
         %% Get data from bid to be refreshed
@@ -33,11 +33,11 @@ function [ SS ] = ageCheckBuyer(SS, m, t)
         %   day, time, seller/buyer id, s/b price, shares, dirty bit, age bit, new
         %   entry number, index of aged entry
         
-        %for i = 1:1:lgt
+        for i = 1:1:lgt
                                                                             %loop for each auction to be refreshed
             
-            %orind = SS.bookbpaging( i, 4 );                                 %get original auction index
-            orind = SS.bookbpaging( pagedind, 4 );                          %get original auction index
+            %orind = SS.bookbpaging( i, 4 );                                %get original auction index
+            orind = SS.bookbpaging( pagedind(i), 4 );                          %get original auction index
             auction = SS.bookb( orind, : );   
             ind = auction(3);                                               %index of the chosen trader
             arefresh = auction(8) + 1;                                      %amount of refresh
@@ -47,11 +47,15 @@ function [ SS ] = ageCheckBuyer(SS, m, t)
             SS.bookbpaging( pagedind, : ) = [];                             %erase old entry in paging matix
             SS.sbbp = SS.sbbp - 1;
             
-            %TODO switch
-            %[ SS ] = buyer(SS, m, t, ind, arefresh, orind );
-        
             
-        %end
+            entrefresh = 0;
+            if entrefresh == 1
+                
+                [ SS ] = buyer(SS, m, t, ind, arefresh, orind );
+        
+            end
+            
+        end
                 
         
     end
