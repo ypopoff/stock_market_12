@@ -1,0 +1,13 @@
+Data
+Simulation**
+globalsim**info.txt
+Compare
+Sim**
+sim**parameter.mat
+sim**info.txt
+sim**report.txt
+globalsim**report.txt
+sim**plot
+Input
+param.txt
+structure.txt
