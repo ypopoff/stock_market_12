@@ -22,7 +22,7 @@ the appropriate github command in the bash!
 >> git mv filename1.m filename2.m
 >> git mv foldername1/ foldername2/
 
-###
+### Move
 >> git mv foldername1/ subfolder/foldername1/
 
 If this does not work:
@@ -56,11 +56,17 @@ This can be done by
 (Without "git" at the beginning; -d means that a directory
 is deleted)
 
-
 ## Get entire project directory
 git clone git@github.com:ypopoff/stock_market_12.git
 
 ## Create new branch
+
+## Create directory
+Directories do not need to be created on the online version,
+because they are automatically generated.
+Therefore, you only have to create the directory on your local
+computer with the following command
+>> mkdir foldername
 
 
 
