@@ -1,0 +1,38 @@
+©2012 ETH Zuerich
+Bambolei
+Nicholas Eyring, Youri Popoff
+Simulation of trading in an artificial stock market
+
+
+
+                                     **** SIMULATION 25 ****
+
+                                            Information file
+
+                                                    Date:  18-Oct-2012
+                                                    Time:  15:24:21
+
+                      Number of traders -           tnum:  100
+                       Amount of shares -      totShares:  100000
+                         Starting price -             p0:  100.00
+
+            Mean of normal distribution -             mu:  1.0000
+ Initial std. deviation of normal dist. -          sigma:  0.0050
+  Parameter of exponential distribution -         lambda:  20.0000
+
+                             Total days -              M:  10
+                  Total time in seconds -              T:  25200
+
+             Last tick iteration window -             dt:  60.00
+
+                    Empty book (On/Off) -        bkempty:  1
+                 Entry refresh (On/Off) -     entrefresh:  0
+       Entry erasure when aged (On/Off) -         entage:  1
+               Multiple shares (On/Off) -      mulshares:  1
+           Volatility feedback (On/Off) -        volfeed:  1
+
+                  Sigma constant factor -              k:  1.60
+             Buyer - Seller correlation -         korrbs:  1.00
+            Old - New sigma correlation -          korrk:  0.00
+                   Maximum age of entry -             a0:  600.00
+
