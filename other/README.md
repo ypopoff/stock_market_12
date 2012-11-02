@@ -11,16 +11,16 @@ $ git pull
 Avoid git add .  -> commitments you don't want because all files are added,
 even the one that you don't want to add
 e.g. matlab autosave files like file1.asv or temporary files like file1.m~.
->> git add * \n
->> git add .
+<p> >> git add * </p>
+<p> >> git add . </p>
 
 ## Rename & remove files or directories
 Do not rename files on your local computer without using
 the appropriate github command in the bash!
 
 ### Rename
->> git mv filename1.m filename2.m \n
->> git mv foldername1/ foldername2/
+<p> >> git mv filename1.m filename2.m </p>
+<p> >> git mv foldername1/ foldername2/ </p>
 
 ### Move
 >> git mv foldername1/ subfolder/foldername1/
