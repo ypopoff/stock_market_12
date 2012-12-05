@@ -9,6 +9,18 @@ function [ SSM, SP, SPL ] = main( SSM, SP, SPL )
 %   entries in the Stock Market book
 
 
+    % Liveplot
+    if SPL.liveplot == 1
+            
+        cd('../Plot');
+        
+            liveplot;
+            
+        cd('../Computation');
+        
+    end
+        
+
     % Debug coefficient: time evolution
     coeff = 1/(SP.M*SP.T)*100;
     pe = -1;
@@ -30,6 +42,10 @@ function [ SSM, SP, SPL ] = main( SSM, SP, SPL )
     %% Simulation section
     for i = 1:1:(SP.M)*(SP.T)
 
+        
+        %% Standard deviation
+        SP = deviation( SP, m );
+        
 
         %% Age Update
         SSM.bookbpaging = ageUpdate( SSM.bookbpaging, SSM.sbbp );
@@ -100,8 +116,9 @@ function [ SSM, SP, SPL ] = main( SSM, SP, SPL )
         %% Plot section live
         if SPL.liveplot == 1
 
-            [ SPL.ymin, SPL.ymax ] = plotPrice( i, SSM, SP, SPL, fig1 );
-            %plotLogReturns( SS, fig4 );
+            cd('../Plot');
+            plotPrice( i, SSM, SP, SPL, fig1 );
+            cd('../Computation');
 
         end
 
