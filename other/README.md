@@ -60,6 +60,21 @@ is deleted)
 <p> <code> git clone git@github.com:ypopoff/stock_market_12.git </code> </p>
 
 ## Create new branch
+View the existing branches
+<p> <code> git branch </code> </p>
+
+Create new branch
+<p> <code> git branch <branchname> </code> </p>
+
+Switch to new branch
+<p> <code> git checkout <branchname> </code> </p>
+
+Merge two branches
+1. Switch to branch which the code should be merged into
+<p> <code> git checkout <branchtomergeinto> </code> </p>
+2. Merge from a certain branch
+<p> <code> git merge <branchtomergefrom> </code> </p>
+3. Solve conflicts by hand
 
 ## Create directory
 Directories do not need to be created on the online version,
