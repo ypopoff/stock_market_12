@@ -155,11 +155,26 @@ function [ SSM, SP, SPL ] = init( )
     regulate = 1;                                                           % toggle price regulation : 1 - on , 0 - off
     
     pC = 110;                                                               % price ceiling
-    pF = 100;                                                                % price floor
+    pF = 100;                                                               % price floor
     
     % allowing growth
     
-    growth = 15;                                                             % constant allowed growth : % per day
+    growth = 15;                                                            % constant allowed growth : % per day
+    
+    
+    %% Financial bubble
+    
+    t1 = 1;                                                                 % growth start
+    t2 = 7;                                                                 % crash
+    t3 = 9;                                                                 % back to stability
+    
+    mu1 = 1.003;                                                            % increase
+    mu2 = 0.980;                                                            % crash
+    mu3 = 1;                                                                % stability
+    
+    devon = 1;
+    
+   
     
     %% Define and initialize current system state structure variable
     %   Group system parameters in a single structure for convenience and
@@ -220,7 +235,14 @@ function [ SSM, SP, SPL ] = init( )
                     'regulate',     regulate,       ...
                     'pC',           pC,             ...
                     'pF',           pF,             ...
-                    'growth',       growth          );
+                    'growth',       growth,         ...
+                    'devon',        devon,          ...
+                    't1',           t1,             ...
+                    't2',           t2,             ...
+                    't3',           t3,             ...
+                    'mu1',          mu1,            ...
+                    'mu2',          mu2,            ...
+                    'mu3',          mu3             );
 
 
 
