@@ -52,7 +52,7 @@ function [ SSM ] = seller( SSM, SP, m, t, ind, arefresh, orind )
             
         end
         
-        %% Price regulation
+        %% Price regulation 1
         %   variations of more than varwidth are not allowed
         
         varwidth = 0.06*SSM.sigma/0.005;
@@ -76,7 +76,15 @@ function [ SSM ] = seller( SSM, SP, m, t, ind, arefresh, orind )
             p = tpr;
             
         end
-
+        
+        %% Price regulation 2
+        %   regulates price with ceiling/floor if applicable
+        
+        if SP.regulate == 1
+            
+            p = regulatePrice(p, SP, t);                                    % regulate price if applicable
+            
+        end
 
         %% Transaction section
         %   Compute amount of shares (sell) & write entry in book 
