@@ -21,11 +21,11 @@ function [ SSM, SP, SPL ] = init( )
     sigma = 0.005;                                                          % mean of the gaussian (normal) distribution
 
 
-    %M = 10;                                                                 % number of days
-    M = 1;
+    M = 10;                                                                 % number of days
+    %M = 1;
     m = 0;                                                                  % starting at day 0
-    %h = 7;                                                                  % hours in one trading day
-    h = 3;
+    h = 7;                                                                  % hours in one trading day
+    %h = 3;
     T = 60*60*h;                                                            % number of seconds in one trading day
     t = 0;                                                                  % global time variable
 
@@ -149,6 +149,21 @@ function [ SSM, SP, SPL ] = init( )
     
     tregB4 = treg;                                                          % initial trader matrix used for comparison
     tnumB4 = tnum;
+    
+    %% Financial bubble
+    
+    t1 = 1;                                                                 % growth start
+    t2 = 7;                                                                 % crash
+    t3 = 9;                                                                 % back to stability
+    
+    mu1 = 1.003;                                                            % increase
+    mu2 = 0.980;                                                            % crash
+    mu3 = 1;                                                                % stability
+    
+    devon = 1;
+    
+    
+    
 
     %% Define and initialize current system state structure variable
     %   Group system parameters in a single structure for convenience and
@@ -205,7 +220,14 @@ function [ SSM, SP, SPL ] = init( )
                     'entage',       entage,         ...
                     'entrefresh',   entrefresh,     ...
                     'mulshares',    mulshares,      ...
-                    'volfeed',      volfeed         );
+                    'volfeed',      volfeed,        ...
+                    'devon',        devon,          ...
+                    't1',           t1,             ...
+                    't2',           t2,             ...
+                    't3',           t3,             ...
+                    'mu1',          mu1,            ...
+                    'mu2',          mu2,            ...
+                    'mu3',          mu3             );
 
 
 
