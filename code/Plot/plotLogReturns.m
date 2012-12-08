@@ -18,9 +18,9 @@ function [ ] = plotLogReturns( SSM, SP, SPL, fig4 )
     plot( T, SSM.ret(1:1:SSM.retsize,2));
     xlim([0 xmax]);
     ylim([SPL.retymin SPL.retymax]);
-    xlabel('time in seconds');
-    ylabel('percent');
-    title('Log-returns');
+    xlabel('time in seconds', 'fontsize', SPL.xfs);
+    ylabel('percent', 'fontsize', SPL.yfs);
+    title('Log-returns', 'fontsize', SPL.tfs);
 
 
     for j = 1:1:SP.M

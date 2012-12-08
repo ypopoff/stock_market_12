@@ -9,7 +9,7 @@ function [ SPL ] = plotPrice( i, SSM, SP, SPL, fig1 )
 
     set( 0, 'CurrentFigure', fig1 );
     
-    %TODO Plot intervall
+    % Plot intervall
     deltat = 50;                                                            % plot every 50s
 
 
@@ -57,9 +57,9 @@ function [ SPL ] = plotPrice( i, SSM, SP, SPL, fig1 )
             
             xlim([0 xmax]);
             ylim([SPL.ymin SPL.ymax]);
-            xlabel('time in seconds');
-            ylabel('buyer entry price');
-            title('Buyer price');
+            xlabel('time in seconds', 'fontsize', SPL.xfs);
+            ylabel('buyer entry price', 'fontsize', SPL.yfs);
+            title('Buyer price', 'fontsize', SPL.tfs);
 
             
         %% Seller price subplot
@@ -74,9 +74,9 @@ function [ SPL ] = plotPrice( i, SSM, SP, SPL, fig1 )
             
             xlim([0 xmax]);
             ylim([SPL.ymin SPL.ymax]);
-            xlabel('time in seconds');
-            ylabel('seller entry price');
-            title('Seller price');
+            xlabel('time in seconds', 'fontsize', SPL.xfs);
+            ylabel('seller entry price', 'fontsize', SPL.yfs);
+            title('Seller price', 'fontsize', SPL.tfs);
 
         
         %% Transaction price subplot
@@ -91,9 +91,9 @@ function [ SPL ] = plotPrice( i, SSM, SP, SPL, fig1 )
             
             xlim([0 xmax]);
             ylim([SPL.ymin SPL.ymax]);
-            xlabel('time in seconds');
-            ylabel('transaction price');
-            title('Transaction price');
+            xlabel('time in seconds', 'fontsize', SPL.xfs);
+            ylabel('transaction price', 'fontsize', SPL.yfs);
+            title('Transaction price', 'fontsize', SPL.tfs);
             
             
             
