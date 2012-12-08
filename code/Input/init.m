@@ -21,11 +21,11 @@ function [ SSM, SP, SPL ] = init( )
     sigma = 0.005;                                                          % mean of the gaussian (normal) distribution
 
 
-    %M = 10;                                                                 % number of days
-    M = 10;
+    M = 10;                                                                 % number of days
+    %M = 10;
     m = 0;                                                                  % starting at day 0
-    %h = 7;                                                                  % hours in one trading day
-    h = 3;
+    h = 7;                                                                  % hours in one trading day
+    %h = 2;
     T = 60*60*h;                                                            % number of seconds in one trading day
     t = 0;                                                                  % global time variable
 
@@ -129,7 +129,7 @@ function [ SSM, SP, SPL ] = init( )
 
 
     entrefresh = 0;
-    volfeed = 1;
+    volfeed = 0;
     entage = 1;
     mulshares = 1;
 
@@ -152,7 +152,7 @@ function [ SSM, SP, SPL ] = init( )
     
     %% Price Regulation
     
-    regulate = 1;                                                           % toggle price regulation : 1 - on , 0 - off
+    regulate = 0;                                                           % toggle price regulation : 1 - on , 0 - off
     
     pC = 110;                                                               % price ceiling
     pF = 100;                                                               % price floor
@@ -172,7 +172,13 @@ function [ SSM, SP, SPL ] = init( )
     mu2 = 0.980;                                                            % crash
     mu3 = 1;                                                                % stability
     
-    devon = 1;
+    devon = 0;
+    
+    
+    %% Plot label caption!!!
+    xfs = 14;
+    yfs = 14;
+    tfs = 16;
     
    
     
@@ -254,7 +260,10 @@ function [ SSM, SP, SPL ] = init( )
                     'ymax',         ymax,           ...
                     'ymin',         ymin,           ...
                     'tregB4',       tregB4,         ...
-                    'tnumB4',       tnumB4          );
+                    'tnumB4',       tnumB4,         ...
+                    'xfs',          xfs,            ...
+                    'yfs',          yfs,            ...
+                    'tfs',          tfs             );
 
 end
 
