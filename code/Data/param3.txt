@@ -1,0 +1,3 @@
+SP.regulate      	1           1           1
+SP.growth           13          1           17
+SP.p0               100         5           110
