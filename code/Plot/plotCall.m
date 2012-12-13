@@ -49,21 +49,22 @@ function [ ] = plotCall( SSM, SP, SPL, plotpath, comparepath )
     if SP.volfeed == 0
         plot([ones(SP.M*SP.T,1),SSM.sigma * ones(SP.M*SP.T,1)]);
         xlim([0 SP.M*SP.T]);
+        xlabel('time in seconds', 'fontsize', SPL.xfs);
+    
+        for j = 1:1:SP.M
+
+            line( [ j*SP.T j*SP.T ], [ 0.0 0.2 ], 'Color', [0.75, 0.75, 0.75] );
+
+        end
+        
     else
         plot([ones(SSM.se,1),SSM.sige(1:SSM.se,1)]);
-        xlim([0 length(SSM.se)]);
+        xlim([0 SSM.se]);
+        xlabel('time (trading occurence)', 'fontsize', SPL.xfs);
     end
     ylim([0.0 0.2]);
     title('Sigma', 'fontsize', SPL.tfs);
-    xlabel('time in seconds', 'fontsize', SPL.xfs);
     ylabel('sigma', 'fontsize', SPL.yfs);
-
-    
-    for j = 1:1:SP.M
-
-        line( [ j*SP.T j*SP.T ], [ 0.0 0.2 ], 'Color', [0.75, 0.75, 0.75] );
-
-    end
     
 
     
