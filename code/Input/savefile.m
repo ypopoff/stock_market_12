@@ -66,7 +66,7 @@ function [ ] = savefile( SSM, SP, SPL, path, simfold, sparam, sinfo, ctrl )
         fprintf(file, ' - VOLATILITY FEEDBACK PARAMETERS -                          \n');
         fprintf(file, '                  Sigma constant factor -              k:  %.2f\n',   SP.k);
         fprintf(file, '             Buyer - Seller correlation -         korrbs:  %.2f\n',   SP.korrbs);
-        fprintf(file, '            Old - New sigma correlation -          korrk:  %.2f\n',   SP.korrk);
+        fprintf(file, '            Old - New sigma correlation -          korrk:  %.6f\n',   SP.korrk);
         fprintf(file, '                   Maximum age of entry -             a0:  %.2f\n\n\n', SP.a0);
         
         fprintf(file, ' - PRICE REGULATION PARAMETERS -                             \n');

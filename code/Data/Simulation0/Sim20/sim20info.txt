@@ -1,0 +1,61 @@
+©2012 ETH Zuerich
+Bambolei
+Nicholas Eyring, Youri Popoff
+Simulation of trading in an artificial stock market
+
+
+
+                                     **** SIMULATION 20 ****
+
+                                            Information file
+
+                                                    Date:  13-Dec-2012
+                                                    Time:  13:42:12
+
+ - SIMULATION MODUS -                                        
+                    Empty book (On/Off) -        bkempty:  1
+                 Entry refresh (On/Off) -     entrefresh:  0
+       Entry erasure when aged (On/Off) -         entage:  1
+               Multiple shares (On/Off) -      mulshares:  1
+           Volatility feedback (On/Off) -        volfeed:  0
+              Price regulation (On/Off) -       regulate:  0
+              Financial bubble (On/Off) -          devon:  0
+
+
+ - STANDARD PARAMETERS (used in all of the modi)             
+                      Number of traders -           tnum:  100
+                       Amount of shares -      totShares:  100000
+                         Starting price -             p0:  100.00
+
+            Mean of normal distribution -             mu:  1.0000
+ Initial std. deviation of normal dist. -          sigma:  0.0060
+  Parameter of exponential distribution -         lambda:  18.0000
+
+                             Total days -              M:  10
+                  Total time in seconds -              T:  25200
+
+             Last tick iteration window -             dt:  60.00
+
+
+ - VOLATILITY FEEDBACK PARAMETERS -                          
+                  Sigma constant factor -              k:  1.68
+             Buyer - Seller correlation -         korrbs:  1.00
+            Old - New sigma correlation -          korrk:  0.00
+                   Maximum age of entry -             a0:  600.00
+
+
+ - PRICE REGULATION PARAMETERS -                             
+                                 Growth -         growth:  15.00
+                            Price floor -             pF:  100.00
+                          Price ceiling -             pC:  110.00
+
+
+ - FINANCIAL BUBBLE PARAMETERS -                             
+          Stability mean of norm. dist. -            mu3:  1.00
+                    Bubble starting day -             t1:  1
+           Increase mean of norm. dist. -            mu1:  1.00
+                    Day of bubble burst -             t2:  7
+           Decrease mean of norm. dist. -            mu2:  0.98
+           Day of stability after burst -             t3:  9
+
+

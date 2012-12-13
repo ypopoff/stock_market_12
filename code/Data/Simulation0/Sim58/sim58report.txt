@@ -1,0 +1,18 @@
+©2012 ETH Zuerich
+Bambolei
+Nicholas Eyring, Youri Popoff
+Simulation of trading in an artificial stock market
+
+
+
+                                     **** SIMULATION 58 ****
+
+                                            Report file
+
+                                                    Date:  13-Dec-2012
+                                                    Time:  15:56:22
+
+                   Computation duration -          ctime:  132.970368
+                          Report status -          rstat:  Simulation was succesful!
+                          Error message -         errmsg:  -
+

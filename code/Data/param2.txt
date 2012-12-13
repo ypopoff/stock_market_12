@@ -1,0 +1,4 @@
+SP.growth           0           1           0
+SP.regulate      	1           1           1
+SP.pF               95          1           100
+SP.pC               110         1           115

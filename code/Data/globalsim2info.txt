@@ -1,0 +1,18 @@
+©2012 ETH Zuerich
+Bambolei
+Nicholas Eyring, Youri Popoff
+Simulation of trading in an artificial stock market
+
+
+
+                                     **** Global SIMULATION 2 ****
+
+                                            Info file
+
+                                                    Date:  13-Dec-2012
+                                                    Time:  19:52:34
+
+                                   Number of simulations:  36
+                                         Simulation info:  Data/Simulation2/Sim**/sim**info.txt
+                                   Simulation parameters:  Data/Simulation2/Sim**/sim**parameter.mat
+
