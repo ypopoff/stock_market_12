@@ -43,8 +43,8 @@ function [ SSM, SP, SPL ] = main( SSM, SP, SPL )
     for i = 1:1:(SP.M)*(SP.T)
 
         
-        %% Standard deviation
-        SP = deviation( SP, m );
+        %% Shift the mean
+        SP = shiftMean( SP, m );
         
 
         %% Age Update

@@ -5,8 +5,8 @@
 
 
 
-function [ SP, m ] = deviation( SP, m )
-%DEVIATION changes the standard deviation of the price
+function [ SP, m ] = shiftMean( SP, m )
+%SHIFTMEAN changes the mean of the price
 
     if SP.devon == 1
 
