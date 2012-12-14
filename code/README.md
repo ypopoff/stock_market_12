@@ -20,8 +20,8 @@ The syntax described here should be respected, for the code to function as inten
 - The parameters defined should also be existent.
 
 Further (valid) examples of parameter files can be seen in _code/Data/param**.txt_; these were the parameter sweep definitions used
-for the results presented in the paper).
-(When using one of these _param**.txt_ files, the ** should be removed and the file should be copied in the _code/Input/_ folder).
+for the results presented in the paper.
+(When using one of these _param**.txt_ files, the _**_ should be removed and the file should be copied in the _code/Input/_ folder).
 
 ## Troubleshooting
 - The input is not generated: remove the carriage return at the end of _code/Input/param.txt_.
