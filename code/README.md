@@ -1,29 +1,31 @@
 # How to run the code
 
+This file should be read with a Markdown language compatible reader (or online on github), or else the format will be 
+
 ## General advice
-<p>
-	The simulation(s) can be started by running the script _code/control.m_ in MatLab.
-	An automated implementation takes care of creating the input, running the simulation and plotting the results.
-</p>
+The simulation(s) can be started by running the script _code/control.m_ in MatLab.
+An automated implementation takes care of creating the input, running the simulation and plotting the results.
+
 
 ## Changing the sweep
 The sweep definition can be modified in _code/Input/param.txt_.
 
 The structure is (example):
 
- [Swept parameter] [initial value] [increment] [final value]
+ |[Swept parameter]| |[initial value]| |[increment]| |[final value]|
+ |:----------------| |:--------------| |:----------| |:------------|
  
-  SP.p0				100				1			110
-  SP.M				1				1			10
+ |SP.p0            | |100			 | |1		   | |110          |
+ |SP.M			   | |1				 | |1		   | |10           |
  
  
 The syntax described here should be respected, for the code to function as intended.
 
-<li>Additional space characters or tabulation characters may be placed between the different columns.</li>
-<li>However, a (superfluous) carriage return at the end of the file will hinder the generation of the input.</li>
-<li>The parameters defined should also be existent.</li>
+- Additional space characters or tabulation characters may be placed between the different columns.
+- However, a (superfluous) carriage return at the end of the file will hinder the generation of the input.
+- The parameters defined should also be existent.
 
-Further examples of parameter files can be seen in _code/Data/param**.txt_; these were the parameter sweep definitions used
+Further (valid) examples of parameter files can be seen in _code/Data/param**.txt_; these were the parameter sweep definitions used
 for the results presented in the paper).
 (When using one of these _param**.txt_ files, the ** should be removed and the file should be copied in the _code/Input/_ folder).
 
