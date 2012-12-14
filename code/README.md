@@ -1,7 +1,5 @@
 # How to run the code
 
-This file should be read with a Markdown language compatible reader (or online on github), or else the format will be 
-
 ## General advice
 The simulation(s) can be started by running the script _code/control.m_ in MatLab.
 An automated implementation takes care of creating the input, running the simulation and plotting the results.
@@ -12,12 +10,8 @@ The sweep definition can be modified in _code/Input/param.txt_.
 
 The structure is (example):
 
- |[Swept parameter]| |[initial value]| |[increment]| |[final value]|
- |:----------------| |:--------------| |:----------| |:------------|
- 
- |SP.p0            | |100			 | |1		   | |110          |
- |SP.M			   | |1				 | |1		   | |10           |
- 
+ <code>[Swept parameter] [initial value] [increment] [final value]</code>
+
  
 The syntax described here should be respected, for the code to function as intended.
 
