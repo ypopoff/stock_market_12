@@ -8,7 +8,6 @@ function [ ymin, ymax ] = dynamicLimity( pmax, pmin, ymin, ymax )
 %DYNAMICLIMITY computes the limit of the price graph
 %   The limits adapt itself to the min & max price
 
-    %TODO margin
     margin = 20;
         
         
