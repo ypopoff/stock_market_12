@@ -1,39 +1,32 @@
-# Code Folder !!! OUTDATED !!! 
+# How to run the code
 
-##Hierarchy
+## General advice
+<p>
+	The simulation(s) can be started by running the script _code/control.m_ in MatLab.
+	An automated implementation takes care of creating the input, running the simulation and plotting the results.
+</p>
 
-* test.m
-* init.m
-* main.m
-	* buyer.m
-	* seller.m
+## Changing the sweep
+The sweep definition can be modified in _code/Input/param.txt_.
 
+The structure is (example):
 
-##Script test.m
+ [Swept parameter] [initial value] [increment] [final value]
+ 
+  SP.p0				100				1			110
+  SP.M				1				1			10
+ 
+ 
+The syntax described here should be respected, for the code to function as intended.
 
-Test application of the random distribution functions, rand(n), exprnd(n) & normrnd(n).
+<li>Additional space characters or tabulation characters may be placed between the different columns.</li>
+<li>However, a (superfluous) carriage return at the end of the file will hinder the generation of the input.</li>
+<li>The parameters defined should also be existent.</li>
 
+Further examples of parameter files can be seen in _code/Data/param**.txt_; these were the parameter sweep definitions used
+for the results presented in the paper).
+(When using one of these _param**.txt_ files, the ** should be removed and the file should be copied in the _code/Input/_ folder).
 
-##Script init.m
-
-Contains all initial parameters.
-Creates trader matrix & empty book matrixes.
-
-
-##Script main.m
-
-Determines trading period and calls buyer or seller function to create entries in the Stock Market book.
-
-
-##Function buyer.m
-
-Completes the tasks of the buyer (stat = 0).
-Calculates the price of the bid.
-Checks if transaction needs to be executed and calls transaction function.
-
-
-##Function seller.m
-
-Completes the tasks of the seller (stat = 1).
-Calculates the price of the asked price.
-Checks if transaction needs to be executed and calls transaction function.
+## Troubleshooting
+- The input is not generated: remove the carriage return at the end of _code/Input/param.txt_.
+- The simulations all fail: check the error message in the simulation report files: _code/Data/Simulation**/Sim**/sim**report.txt_.
